@@ -6,20 +6,23 @@
 #    By: rmarzouk <rmarzouk@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/14 16:33:55 by rmarzouk          #+#    #+#              #
-#    Updated: 2024/11/04 12:09:01 by rmarzouk         ###   ########.fr        #
+#    Updated: 2024/11/23 17:39:55 by rmarzouk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 FLAGS= -Wall -Wextra -Werror -std=c++98 -fsanitize=address
 CC = c++
+HEADERS=PhoneBook.hpp Contact.hpp
 NAME=PhoneBook
 SRC= main.cpp PhoneBook.cpp Contact.cpp
 OBJ=$(SRC:.cpp=.o)
 
-all:$(OBJ)
+all:$(NAME)
+
+$(NAME):$(OBJ)
 	$(CC) $(FLAGS) $(OBJ) -o $(NAME)
 
-%.o:%.cpp
+%.o:%.cpp $(HEADERS)
 	$(CC) $(FLAGS) -c $< -o $@
 
 clean:

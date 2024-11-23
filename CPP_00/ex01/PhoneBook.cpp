@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 16:42:24 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/11/14 18:44:39 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/11/23 17:40:50 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ PhoneBook::~PhoneBook()
 	std::cout << " **[ CLOSE PHONEBOOK 👋 ]**" << std::endl;
 	
 }
+
 bool	digits(std::string str)
 {
 	for (int i = 0; str[i]; i++)
