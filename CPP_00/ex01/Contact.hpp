@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 17:13:05 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/11/03 18:32:51 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/11/24 12:59:10 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ class Contact
 		std::string		GetLastName();
 		std::string		GetNickName();
 		std::string		GetPhoneNumber();
+		std::string		GetDarkestSecret();
 
 		bool	IsEmpty();
 };

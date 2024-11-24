@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 16:43:14 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/11/23 17:40:05 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/11/24 12:57:33 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ class PhoneBook
 	private:
 		Contact contacts[8];
 		int	last;
-
 
 	public:
 	PhoneBook();

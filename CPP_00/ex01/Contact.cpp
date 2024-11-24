@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 17:48:53 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/11/02 18:52:21 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/11/24 13:16:14 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,10 @@ std::string		Contact::GetNickName()
 std::string		Contact::GetPhoneNumber()
 {
 	return (PhoneNumber);
+}
+std::string		Contact::GetDarkestSecret()
+{
+	return (DarkestSecret);
 }
 
 bool	Contact::IsEmpty()

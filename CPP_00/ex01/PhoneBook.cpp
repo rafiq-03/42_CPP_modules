@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 16:42:24 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/11/23 17:40:50 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/11/24 13:29:25 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,16 @@ std::string	trim(std::string str)
 	return (str.substr(start, end - start + 1));
 }
 
+bool whitespaces(std::string str)
+{
+	for (unsigned int i = 0; i < str.length(); i++)
+	{
+		if (std::isspace(str.at(i)))
+			return (true);
+	}
+	return (false);
+}
+
 std::string	check_input(std::string prompt)
 {
 	std::string input;
@@ -54,7 +64,7 @@ std::string	check_input(std::string prompt)
 		if (!std::getline(std::cin, input))
 			exit(EXIT_FAILURE);
 		input = trim(input);
-		if (input.empty() || (prompt == "* Phone Number   : " && !digits(input)))
+		if (input.empty() || (prompt == "* Phone Number   : " && !digits(input)) || whitespaces(input))
 			std::cout << "\033[31mInvalid input !!\033[0m" << std::endl;
 		else
 			break;
@@ -91,6 +101,17 @@ void	PhoneBook::setContact()
 	sleep(1);
 	system("clear");
 }
+
+std::string	truncate(std::string str)
+{
+	if (str.size() < 10)
+		return (str);
+	std::string trunc = str.substr(0,9);
+	trunc.append(".");
+	return (trunc);
+}
+
+
 void	PhoneBook::getContacts()
 {
 	if (contacts[0].IsEmpty())
@@ -100,15 +121,15 @@ void	PhoneBook::getContacts()
 	std::cout << "|               Phone Book                  |" << std::endl;
 	std::cout << "+-------------------------------------------+" << std::endl;
 
-	std::cout << "|" <<"  index   " << "|" <<"First name" << "|" << "Last Name " << "|" << "Nick name " << "|" << std::endl;
+	std::cout << "|" <<"     index" << "|" <<"First name" << "|" << " Last Name" << "|" << " Nick name" << "|" << std::endl;
 	
 	std::cout << "+-------------------------------------------+" << std::endl;
 	for (int i = 0; !contacts[i].IsEmpty() && i < 8; i++)
 	{
 		std::cout << "|" << std::setw(10) << i << "|";
-		std::cout << std::setw(10) << contacts[i].GetFirstName() << "|";
-		std::cout << std::setw(10) << contacts[i].GetLastName() << "|";
-		std::cout << std::setw(10) << contacts[i].GetNickName() << "|" << std::endl;
+		std::cout << std::setw(10) << truncate(contacts[i].GetFirstName()) << "|";
+		std::cout << std::setw(10) << truncate(contacts[i].GetLastName()) << "|";
+		std::cout << std::setw(10) << truncate(contacts[i].GetNickName()) << "|" << std::endl;
 	}
 	std::cout << "+-------------------------------------------+" << std::endl;
 	std::cout << "\nEnter a Contact ID : ";
@@ -121,16 +142,15 @@ void	PhoneBook::getContacts()
 		std::cout << "\n\033[31mInvalid Contact ID :( \033[0m\n" << std::endl;
 }
 
-
-
 void	PhoneBook::getOneContact(int i)
 {
 	if (i >= 0 && i < 8 && !contacts[i].IsEmpty())
 	{
-		std::cout << "\n* First Name   : " << contacts[i].GetFirstName() << std::endl;
-		std::cout << "* Last Name    : " << contacts[i].GetLastName() << std::endl;
-		std::cout << "* Nick Name    : " << contacts[i].GetNickName() << std::endl;
-		std::cout << "* Phone Number : " << contacts[i].GetPhoneNumber() << "\n" << std::endl;
+		std::cout << "\n* First Name     : " << contacts[i].GetFirstName() << std::endl;
+		std::cout << "* Last Name      : " << contacts[i].GetLastName() << std::endl;
+		std::cout << "* Nick Name      : " << contacts[i].GetNickName() << std::endl;
+		std::cout << "* Phone Number   : " << contacts[i].GetPhoneNumber() << std::endl;
+		std::cout << "* Darkest Secrest: " << contacts[i].GetDarkestSecret() << "\n" <<  std::endl;
 	}
 	else
 		std::cout << "\n\033[31mInvalid Contact ID :( \033[0m\n" << std::endl;
