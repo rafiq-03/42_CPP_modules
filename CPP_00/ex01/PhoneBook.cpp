@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 16:42:24 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/11/24 13:29:25 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/11/24 15:43:36 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void	PhoneBook::setContact()
 
 std::string	truncate(std::string str)
 {
-	if (str.size() < 10)
+	if (str.size() <= 10)
 		return (str);
 	std::string trunc = str.substr(0,9);
 	trunc.append(".");
