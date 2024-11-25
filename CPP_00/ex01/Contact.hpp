@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 17:13:05 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/11/24 16:21:51 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/11/25 11:23:01 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,13 @@ class Contact
 		void			SetPhoneNumber(std::string Phone);
 		void			SetDarkestSecret(std::string Dark);
 		// getters
-		std::string		GetFirstName();
-		std::string		GetLastName();
-		std::string		GetNickName();
-		std::string		GetPhoneNumber();
-		std::string		GetDarkestSecret();
+		std::string		GetFirstName() const;
+		std::string		GetLastName() const;
+		std::string		GetNickName() const;
+		std::string		GetPhoneNumber() const;
+		std::string		GetDarkestSecret() const;
 
-		bool	IsEmpty();
+		bool	IsEmpty() const;
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 16:42:24 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/11/24 15:43:36 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/11/25 15:37:18 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ bool whitespaces(std::string str)
 {
 	for (unsigned int i = 0; i < str.length(); i++)
 	{
-		if (std::isspace(str.at(i)))
+		if (str.at(i) == '\t')
 			return (true);
 	}
 	return (false);
@@ -112,7 +112,7 @@ std::string	truncate(std::string str)
 }
 
 
-void	PhoneBook::getContacts()
+void	PhoneBook::getContacts() const
 {
 	if (contacts[0].IsEmpty())
 		return;
@@ -142,7 +142,7 @@ void	PhoneBook::getContacts()
 		std::cout << "\n\033[31mInvalid Contact ID :( \033[0m\n" << std::endl;
 }
 
-void	PhoneBook::getOneContact(int i)
+void	PhoneBook::getOneContact(int i) const
 {
 	if (i >= 0 && i < 8 && !contacts[i].IsEmpty())
 	{

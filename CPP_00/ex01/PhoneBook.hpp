@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 16:43:14 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/11/24 12:57:33 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/11/25 15:32:43 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ class PhoneBook
 		int	last;
 
 	public:
-	PhoneBook();
-	~PhoneBook();
+		PhoneBook();
+		~PhoneBook();
 	
 	void	setContact();
-	void	getContacts();
-	void	getOneContact(int i);
+	void	getContacts() const ;
+	void	getOneContact(int i) const ;
 };
 
 #endif

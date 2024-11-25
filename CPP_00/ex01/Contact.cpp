@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 17:48:53 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/11/24 13:16:14 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/11/25 11:23:17 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,28 +33,28 @@ void			Contact::SetDarkestSecret(std::string Dark)
 	DarkestSecret = Dark;
 }
 // getters
-std::string		Contact::GetFirstName()
+std::string		Contact::GetFirstName() const
 {
 	return (FirstName);
 }
-std::string		Contact::GetLastName()
+std::string		Contact::GetLastName() const
 {
 	return (LastName);
 }
-std::string		Contact::GetNickName()
+std::string		Contact::GetNickName() const
 {
 	return (NickName);
 }
-std::string		Contact::GetPhoneNumber()
+std::string		Contact::GetPhoneNumber() const
 {
 	return (PhoneNumber);
 }
-std::string		Contact::GetDarkestSecret()
+std::string		Contact::GetDarkestSecret() const
 {
 	return (DarkestSecret);
 }
 
-bool	Contact::IsEmpty()
+bool	Contact::IsEmpty() const
 {
 	if (FirstName.empty() && LastName.empty() && PhoneNumber.empty() && NickName.empty() && DarkestSecret.empty())
 		return (true);

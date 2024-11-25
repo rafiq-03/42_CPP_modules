@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 19:05:08 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/11/24 16:24:07 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/11/25 12:03:14 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	Account::displayAccountsInfos( void )
 
 Account::Account( int initial_deposit )
 {
+	
 	_accountIndex = _nbAccounts++;
 	_amount = initial_deposit;
 	_nbDeposits = 0;
