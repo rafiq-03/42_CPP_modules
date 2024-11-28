@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 10:10:09 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/11/07 14:59:50 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/11/28 12:29:04 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,5 @@ int main()
 		club.setType("some other type of club");
 		jim.attack();
 	}
-	// system("leaks -q War");
 	return 0;
 }

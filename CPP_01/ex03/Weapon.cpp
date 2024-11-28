@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 10:13:38 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/11/07 13:39:00 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/11/28 12:30:39 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 
 Weapon::Weapon()
 {
-	// std::cout << "new weapon here" << std::endl;	
+	std::cout << "new weapon here" << std::endl;
 }
 
 Weapon::Weapon(std::string _type)
 {
+	std::cout << "new weapon here" << std::endl;
 	type =_type;	
 }
 const std::string& Weapon::getType()
