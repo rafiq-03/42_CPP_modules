@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 17:39:11 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/11/10 13:05:57 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/11/28 11:42:00 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 
 int main(void)
 {
-	Harl test;
+	Harl test= Harl();
 
 	test.complain("DEBUG");
-	test.complain("INFO");
 }
