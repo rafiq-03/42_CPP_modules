@@ -6,7 +6,7 @@
 #    By: rmarzouk <rmarzouk@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/06 15:58:38 by rmarzouk          #+#    #+#              #
-#    Updated: 2024/11/08 16:44:49 by rmarzouk         ###   ########.fr        #
+#    Updated: 2024/11/26 14:05:36 by rmarzouk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,5 +29,5 @@ clean:
 fclean:clean
 	rm -rf $(NAME)
 re:
-	@make clean
+	@make fclean
 	@make all
