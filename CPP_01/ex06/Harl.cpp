@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 16:55:26 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/11/08 18:03:25 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/11/23 20:46:55 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void Harl::complain( std::string level )
 	switch (lvl + 1)
 	{
 		case 1:
-			Harl::debug();		
+			Harl::debug();
 		case 2:
 			Harl::info();		
 		case 3:
