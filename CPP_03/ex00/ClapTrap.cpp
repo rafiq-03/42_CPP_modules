@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 12:28:53 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/11/15 16:28:06 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/11/30 17:41:44 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,24 @@
 
 /*-[constructors : ]--------------*/
 
-ClapTrap::ClapTrap():_Name("Unkown"), _HitPoints(10), _EnergyPoints(10) , _AttackDamage (0)
+ClapTrap::ClapTrap(): _HitPoints(10), _EnergyPoints(10) , _AttackDamage (0) // need to check it later
 {
 	std::cout << "ClapTrap " << _Name << " is alive now :)" << std::endl;
 }
+
 ClapTrap::ClapTrap(const std::string& Name):_Name (Name), _HitPoints(10), _EnergyPoints(10) , _AttackDamage (0)
 {
 	std::cout << "ClapTrap " << _Name << " is alive now :)" << std::endl;
 }
+
 ClapTrap::ClapTrap(ClapTrap &other): _Name (other.getName()), _HitPoints(other.getHit()), _EnergyPoints (other.getEnergy()), _AttackDamage(other.getAttack())
 {
 	std::cout << "ClapTrap " << _Name << " is alive now, thanks to its copy :)" << std::endl;
 }
+
 ClapTrap &ClapTrap::operator=(const ClapTrap &other)
 {
+	_Name = other.getName();// check it later
 	_HitPoints = other.getHit();
 	_EnergyPoints = other.getEnergy();
 	_AttackDamage = other.getAttack();
@@ -39,36 +43,37 @@ ClapTrap::~ClapTrap(){std::cout << "ClapTrap " << _Name << " is dead :(" << std:
 
 /*-[setters : ]--------------*/
 
-void	ClapTrap::setHit(const unsigned int amount){ _HitPoints=amount;}
-void	ClapTrap::setEnergy(const unsigned int amount){ _EnergyPoints=amount;}
-void	ClapTrap::setAttack(const unsigned int amount){ _AttackDamage=amount;}
+void	ClapTrap::setName(const std::string name){ _Name=name;}
+void	ClapTrap::setHit(const int amount){ _HitPoints=amount;}
+void	ClapTrap::setEnergy(const int amount){ _EnergyPoints=amount;}
+void	ClapTrap::setAttack(const int amount){ _AttackDamage=amount;}
 
 /*-[getters : ]--------------*/
 
 std::string	ClapTrap::getName(void) const{return _Name;}
-unsigned int ClapTrap::getHit(void) const{return _HitPoints;}
-unsigned int ClapTrap::getEnergy(void) const{return _EnergyPoints;}
-unsigned int ClapTrap::getAttack(void) const{return _AttackDamage;}
+int ClapTrap::getHit(void) const{return _HitPoints;}
+int ClapTrap::getEnergy(void) const{return _EnergyPoints;}
+int ClapTrap::getAttack(void) const{return _AttackDamage;}
 
 /*-[getters : ]--------------*/
 
 void ClapTrap::attack(const std::string& target){
-	if (!_EnergyPoints || !_HitPoints)
+	if (_EnergyPoints <= 0 || _HitPoints <= 0)
 	{
 		std::cout << "ClapTrap " << _Name << " can't Attack target" << std::endl;
 		return ;	
 	}
 	_EnergyPoints--;
-	_AttackDamage++;// check it later
-	std::cout << "ClapTrap " << _Name << " attacks " << target << ", causing " << "damage" << " points of damage!" << std::endl;
+	std::cout << "ClapTrap " << _Name << " attacks " << target << ", causing " << _AttackDamage << " points of damage!" << std::endl;
 }
-void ClapTrap::takeDamage(unsigned int amount){
+
+void ClapTrap::takeDamage(int amount){
 	_HitPoints -= amount;
 	std::cout << "ClapTrap " << _Name << " take " << amount << " points of damage!" << std::endl;
 }
 
-void ClapTrap::beRepaired(unsigned int amount){
-	if (!_EnergyPoints || !_HitPoints)
+void ClapTrap::beRepaired(int amount){
+	if (_EnergyPoints <= 0 || _HitPoints <= 0)
 	{
 		std::cout << "ClapTrap " << _Name << " can't repaire itself !" << std::endl;
 		return ;

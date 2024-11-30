@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 12:29:10 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/11/15 16:17:03 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/11/30 17:32:54 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,41 +20,42 @@ class ClapTrap
 	private:
 
 		std::string	  _Name;
-		unsigned int  _HitPoints;
-		unsigned int  _EnergyPoints;
-		unsigned int  _AttackDamage;
+		int  _HitPoints;
+		int  _EnergyPoints;
+		int  _AttackDamage;
 
 	public:
 
 		/*--------[constructors :]-----------------*/
-		ClapTrap();
-		ClapTrap(const std::string& Name);
-		ClapTrap(ClapTrap &other);
+		ClapTrap();// default
+		ClapTrap(const std::string& Name);// parametrized
+		ClapTrap(ClapTrap &other); // copy constructor
 
-		ClapTrap &operator=(const ClapTrap &other);
+		ClapTrap &operator=(const ClapTrap &other);// copy assignement operator
+	
 		/*--------[destructor :]-----------------*/
 		
-		~ClapTrap();
+		~ClapTrap();// destructor
 		
 		/*--------[setters :]-----------------*/
 		
 		void	setName(const std::string Name);
-		void	setHit(const unsigned int amount);
-		void	setEnergy(const unsigned int amount);
-		void	setAttack(const unsigned int amount);
+		void	setHit(const int amount);
+		void	setEnergy(const int amount);
+		void	setAttack(const int amount);
 		
 		/*--------[getters :]-----------------*/
 		
 		std::string  getName(void)const;
-		unsigned int getHit(void) const;
-		unsigned int getEnergy(void) const;
-		unsigned int getAttack(void) const;
+		int getHit(void) const;
+		int getEnergy(void) const;
+		int getAttack(void) const;
 
-		
+		/*--------[methodes :]-----------------*/
 		
 		void attack(const std::string& target);
-		void takeDamage(unsigned int amount);
-		void beRepaired(unsigned int amount);
+		void takeDamage(int amount);
+		void beRepaired(int amount);
 };
 
 
