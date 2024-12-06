@@ -6,14 +6,15 @@
 #    By: rmarzouk <rmarzouk@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/14 16:33:55 by rmarzouk          #+#    #+#              #
-#    Updated: 2024/12/06 11:29:06 by rmarzouk         ###   ########.fr        #
+#    Updated: 2024/12/06 11:15:10 by rmarzouk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FLAGS= -Wall -Wextra -Werror -std=c++98
+FLAGS= -Wall -Wextra -Werror -std=c++98 -fsanitize=address
 CC = c++
-NAME=Fixed
-SRC= main.cpp Fixed.cpp
+NAME= 
+HEADER= 
+SRC= 
 OBJ=$(SRC:.cpp=.o)
 
 all:$(NAME)
@@ -21,7 +22,7 @@ all:$(NAME)
 $(NAME):$(OBJ)
 	$(CC) $(FLAGS) $(OBJ) -o $(NAME)
 
-%.o:%.cpp
+%.o:%.cpp $(HEADER)
 	$(CC) $(FLAGS) -c $< -o $@
 
 clean:
@@ -29,6 +30,6 @@ clean:
 fclean:clean
 	rm -rf $(NAME)
 re:
-	@make clean
+	@make fclean
 	@make all
 	

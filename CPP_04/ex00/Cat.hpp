@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmarzouk <rmarzouk@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/11 15:29:18 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/12/06 12:00:44 by rmarzouk         ###   ########.fr       */
+/*   Created: 2024/12/06 11:56:53 by rmarzouk          #+#    #+#             */
+/*   Updated: 2024/12/06 11:56:54 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Fixed.hpp" 
+#ifndef CAT_HPP
+# define CAT_HPP
+# include <iostream>
 
-int main( void ) {
-	Fixed a;
-	Fixed b(a);
-	Fixed c;
-	c = b;
-	c = c;
-	std::cout << a.getRawBits() << std::endl;
-	std::cout << b.getRawBits() << std::endl;
-	std::cout << c.getRawBits() << std::endl;
-	return 0;
-}
+class Cat
+{
+	private:
+
+	public:
+		Cat(void); // Default constructor
+		Cat(const Cat& obj); // Copy constructor
+		Cat&	operator=(const Cat& obj); // Copy assigment operator
+		~Cat(); // Destructor
+
+};
+
+#endif

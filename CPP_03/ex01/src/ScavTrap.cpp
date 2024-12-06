@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 12:28:53 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/11/30 17:07:22 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/12/06 11:54:35 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ ScavTrap::ScavTrap(ScavTrap &other)
 
 ScavTrap &ScavTrap::operator=(const ScavTrap &other)
 {
+	if (this == &other)
+		return (*this);
 	_Name = other.getName();// check it later
 	_HitPoints = other.getHit();
 	_EnergyPoints = other.getEnergy();

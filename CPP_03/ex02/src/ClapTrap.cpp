@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 12:28:53 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/11/30 17:41:02 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/12/06 11:54:58 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ ClapTrap::ClapTrap(ClapTrap &other): _Name (other.getName()), _HitPoints(other.g
 
 ClapTrap &ClapTrap::operator=(const ClapTrap &other)
 {
+	if (this == &other)
+		return (*this);
 	_Name = other.getName();// check it later
 	_HitPoints = other.getHit();
 	_EnergyPoints = other.getEnergy();

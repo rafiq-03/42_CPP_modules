@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 12:49:04 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/12/06 10:41:36 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/12/06 12:53:45 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ Fixed::Fixed(const float value) : _value (roundf(value *(1 << _fractionalBits)))
 }
 
 Fixed& Fixed::operator=(const Fixed &other){
+	if (this == &other)
+		return (*this);
 	// std::cout << "Copy assignment operator called" << std::endl;
 	_value = other.getRawBits();
 	return (*this);
@@ -150,11 +152,11 @@ Fixed	Fixed::operator/(const Fixed &other) const
 	return (res);
 }
 
-
 Fixed	&Fixed::max(Fixed &First, Fixed &Second)
 {
 	return ((First > Second) ? First : Second);
 }
+
 Fixed	&Fixed::min(Fixed &First, Fixed &Second)
 {
 	return ((First < Second) ? First : Second);
@@ -164,6 +166,7 @@ const Fixed	&Fixed::max(const Fixed &First, const Fixed &Second)
 {
 	return ((First > Second) ? First : Second);
 }
+
 const Fixed	&Fixed::min(const Fixed &First, const Fixed &Second)
 {
 	return ((First < Second) ? First : Second);

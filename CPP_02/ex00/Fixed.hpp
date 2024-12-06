@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 12:49:22 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/11/12 16:50:27 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/12/06 11:26:34 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,4 @@ class	Fixed
 		void setRawBits( int const raw );
 };
 
-#endif;
+#endif

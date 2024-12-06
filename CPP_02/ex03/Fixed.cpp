@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 12:49:04 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/11/14 20:04:34 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/12/06 11:44:53 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ Fixed::Fixed(const int value) : _value (value << _fractionalBits){}
 Fixed::Fixed(const float value) : _value (roundf(value *(1 << _fractionalBits))){}
 
 Fixed& Fixed::operator=(const Fixed &other){
+	if (this == &other)
+		return (*this);
 	_value = other.getRawBits();
 	return (*this);
 }

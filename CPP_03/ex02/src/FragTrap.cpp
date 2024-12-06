@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 12:28:53 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/11/30 18:48:10 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/12/06 11:55:08 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ FragTrap::FragTrap(FragTrap &other)
 
 FragTrap &FragTrap::operator=(const FragTrap &other)
 {
+	if (this == &other)
+		return (*this);
 	_Name = other.getName();// check it later
 	_HitPoints = other.getHit();
 	_EnergyPoints = other.getEnergy();
