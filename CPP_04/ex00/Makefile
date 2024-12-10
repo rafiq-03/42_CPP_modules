@@ -3,18 +3,31 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rmarzouk <rmarzouk@student.1337.ma>        +#+  +:+       +#+         #
+#    By: rmarzouk <rmarzouk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/14 16:33:55 by rmarzouk          #+#    #+#              #
-#    Updated: 2024/12/06 11:15:10 by rmarzouk         ###   ########.fr        #
+#    Updated: 2024/12/10 19:23:03 by rmarzouk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 FLAGS= -Wall -Wextra -Werror -std=c++98 -fsanitize=address
 CC = c++
-NAME= 
-HEADER= 
-SRC= 
+NAME= Animal
+HEADER=	$(addprefix include/, \
+						Dog.hpp \
+						Cat.hpp \
+						Animal.hpp \
+						WrongAnimal.hpp \
+						WrongDog.hpp \
+						WrongCat.hpp )
+SRC= $(addprefix src/, \
+						main.cpp \
+						Dog.cpp \
+						Cat.cpp \
+						Animal.cpp \
+						WrongAnimal.cpp \
+						WrongDog.cpp \
+						WrongCat.cpp )
 OBJ=$(SRC:.cpp=.o)
 
 all:$(NAME)

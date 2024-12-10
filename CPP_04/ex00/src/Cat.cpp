@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmarzouk <rmarzouk@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: rmarzouk <rmarzouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 11:56:49 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/12/06 11:56:50 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/12/10 19:18:47 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cat.hpp"
+#include "../include/Cat.hpp"
 
 Cat::Cat(void)
 {
