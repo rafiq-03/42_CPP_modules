@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmarzouk <rmarzouk@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: rmarzouk <rmarzouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 12:49:22 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/12/06 12:12:51 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/12/09 13:30:44 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ class	Fixed
 		
 		// Constructors
 		Fixed();
-		Fixed(const int value);// ex01;
-		Fixed(const float value);// ex01;
+		Fixed(const int value);
+		Fixed(const float value);
 		Fixed(const Fixed &other);
 		
 		// Destructor
@@ -62,8 +62,8 @@ class	Fixed
 		
 		/*----[ Convertion    :  ]----*/
 
-		float	toFloat( void ) const;// ex01
-		int		toInt( void ) const;// ex01
+		float	toFloat( void ) const;
+		int		toInt( void ) const;
 		
 		/*----[ comparaison methodes : ]----*/
 		
