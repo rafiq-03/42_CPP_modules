@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 19:35:46 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/12/10 12:14:50 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/12/11 12:13:45 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,14 @@
 class Point
 {
 	private:
-		Fixed	_x;	
-		Fixed	_y;
+		const Fixed	_x;	
+		const Fixed	_y;
 	public:
 	Point();	
 	Point(const Point &other);
 	Point(const float x, const float y);
 	Point	&operator=(const Point &other);
 	~Point();
-
-	void	set_x(const Fixed val);
-	void	set_y(const Fixed val);
 
 	Fixed	get_x(void)const ;
 	Fixed	get_y(void)const ;
