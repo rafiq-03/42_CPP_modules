@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 11:56:49 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/12/10 19:18:47 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/12/11 16:33:24 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 Cat::Cat(void)
 {
 	std::cout << "Cat Default constructor called" << std::endl;
+	type = "Cat";
 }
 
 Cat::~Cat(void)
@@ -32,8 +33,10 @@ Cat& Cat::operator=(const Cat& obj)
 {
 	std::cout << "Cat Copy assignment operator called" << std::endl;
 	if (this != &obj)
-	{
-		// Add any assignment logic here
-	}
+		type = obj.type;
 	return (*this);
+}
+
+void Cat::makeSound() const{
+	std::cout << "Cat: Meow Meow" << std::endl;
 }

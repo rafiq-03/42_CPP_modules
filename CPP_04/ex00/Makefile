@@ -6,7 +6,7 @@
 #    By: rmarzouk <rmarzouk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/14 16:33:55 by rmarzouk          #+#    #+#              #
-#    Updated: 2024/12/10 19:23:03 by rmarzouk         ###   ########.fr        #
+#    Updated: 2024/12/11 18:43:19 by rmarzouk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,18 +16,18 @@ NAME= Animal
 HEADER=	$(addprefix include/, \
 						Dog.hpp \
 						Cat.hpp \
-						Animal.hpp \
-						WrongAnimal.hpp \
-						WrongDog.hpp \
-						WrongCat.hpp )
+						Animal.hpp\
+						WrongAnimal.hpp\
+						WrongDog.hpp\
+						WrongCat.hpp)
 SRC= $(addprefix src/, \
 						main.cpp \
 						Dog.cpp \
 						Cat.cpp \
-						Animal.cpp \
-						WrongAnimal.cpp \
-						WrongDog.cpp \
-						WrongCat.cpp )
+						Animal.cpp\
+						WrongAnimal.cpp\
+						WrongDog.cpp\
+						WrongCat.cpp)
 OBJ=$(SRC:.cpp=.o)
 
 all:$(NAME)

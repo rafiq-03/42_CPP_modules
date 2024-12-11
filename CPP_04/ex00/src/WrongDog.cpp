@@ -1,26 +1,43 @@
-#include "../include/Wrongdog.hpp"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   WrongDog.cpp                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rmarzouk <rmarzouk@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/11 15:34:29 by rmarzouk          #+#    #+#             */
+/*   Updated: 2024/12/11 18:41:59 by rmarzouk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-Wrongdog::Wrongdog(void)
+#include "../include/WrongDog.hpp"
+
+WrongDog::WrongDog(void)
 {
-	std::cout << "Wrongdog Default constructor called" << std::endl;
+	type = "WrongDog";
+	std::cout << "WrongDog Default constructor called" << std::endl;
 }
 
-Wrongdog::~Wrongdog(void)
+WrongDog::~WrongDog(void)
 {
-	std::cout << "Wrongdog Destructor called" << std::endl;
+	std::cout << "WrongDog Destructor called" << std::endl;
 }
 
-Wrongdog::Wrongdog(const Wrongdog& obj)
+WrongDog::WrongDog(const WrongDog& obj)
 {
-	std::cout << "Wrongdog Copy constructor called" << std::endl;
+	std::cout << "WrongDog Copy constructor called" << std::endl;
+	*this = obj;
 }
 
-Wrongdog& Wrongdog::operator=(const Wrongdog& obj)
+WrongDog& WrongDog::operator=(const WrongDog& obj)
 {
-	std::cout << "Wrongdog Copy assignment operator called" << std::endl;
+	std::cout << "WrongDog Copy assignment operator called" << std::endl;
 	if (this != &obj)
-	{
-		// Add any assignment logic here
-	}
+		type = obj.type;
 	return (*this);
+}
+
+void	WrongDog::makeSound(void) const
+{
+	std::cout << "WrongDog: How How" << std::endl;
 }
