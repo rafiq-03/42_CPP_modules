@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmarzouk <rmarzouk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 10:35:36 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/12/16 15:24:17 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/12/16 15:49:32 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,39 +18,65 @@
 #include "../include/MateriaSource.hpp"
 #include "../include/IMateriaSource.hpp"
 #include "Lists.cpp"
-int main()
-{
-    IMateriaSource* src = new MateriaSource();
-    src->learnMateria(new Ice());
-    src->learnMateria(new Cure());
-    ICharacter* me = new Character("me");
-    AMateria* tmp;
-    tmp = src->createMateria("ice");
-    me->equip(tmp);
-    // std::cout << "\nhere\n\n" ;
-    tmp = src->createMateria("cure");
-    me->equip(tmp);
-    ICharacter* bob = new Character("bob");
-    me->use(0, *bob);
-    me->use(1, *bob);
-    delete bob;
-    delete me;
-    delete src;
-    // system ("leaks -q Animal");
-    return 0;
+void	subjectTest(){
+	std::cout << "Subject test" << std::endl;
+	IMateriaSource* src = new MateriaSource();
+	src->learnMateria(new Ice());
+	src->learnMateria(new Cure());
+	ICharacter* me = new Character("me");
+	AMateria* tmp;
+	tmp = src->createMateria("ice");
+	me->equip(tmp);
+	tmp = src->createMateria("cure");
+	me->equip(tmp);
+	ICharacter* bob = new Character("bob");
+	me->use(0, *bob);
+	me->use(1, *bob);
+	delete bob;
+	delete me;
+	delete src;	
 }
 
-// int main(void)
-// {
-//     IMateriaSource* src = new MateriaSource();
-//     src->learnMateria(new Ice());
-//     src->learnMateria(new Cure());
-//     Character me("me");
-//     Character he(me);
-//     std::cout << me.getName() << std::endl;
-//     me.equip(src->createMateria("ice"));
-//     ICharacter* bob = new Character("bob");
-//     me.use(0, *bob);
-//     delete bob;
-//     system ("leaks -q Animal");
-// }
+
+void	myTest(){
+	std::cout << "My test" << std::endl;
+	IMateriaSource* src = new MateriaSource();
+	src->learnMateria(new Ice());
+	src->learnMateria(new Cure());
+	src->learnMateria(new Ice());
+	src->learnMateria(new Cure());
+	ICharacter* me = new Character("ElMountahi");
+	ICharacter *enemy = new Character("Enemy");
+	for (size_t i = 0; i < 4; i++)
+	{
+		if (i % 2 == 0)
+		{
+			AMateria* tmp = src->createMateria("ice");
+			me->equip(tmp);
+		}
+		else 
+		{
+			AMateria* tmp = src->createMateria("cure");
+			me->equip(tmp);
+		}
+	}
+	AMateria* tmp = src->createMateria("ice");
+	me->equip(tmp);
+	me->use(0, *enemy);
+	me->use(1, *enemy);
+	me->unequip(0);
+	me->unequip(1);
+	me->use(1, *enemy);
+	delete src;
+	delete me;
+	delete enemy;
+	delete tmp;
+}
+
+int main(void)
+{
+	subjectTest();
+	myTest();
+	system("leaks recap");
+	return 0;
+}

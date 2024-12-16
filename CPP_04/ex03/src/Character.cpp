@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Character.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmarzouk <rmarzouk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 16:37:15 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/12/16 15:25:15 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/12/16 15:48:24 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,11 @@ Character::Character(std::string const name){// to do
 }
 
 Character::~Character(void){// to do
+
 	// std::cout << "Character Destructor called" << std::endl;
 	// we must destroy any materia here 
+	for (int i = 0; i < 4; i++)
+		delete _Inventory[i];
 }
 
 Character::Character(const Character& obj){// to do

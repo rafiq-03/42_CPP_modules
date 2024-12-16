@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   MateriaSource.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmarzouk <rmarzouk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 11:04:24 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/12/16 15:26:13 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/12/16 15:49:20 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ MateriaSource::MateriaSource(void){
 
 MateriaSource::~MateriaSource(void){
 	// std::cout << "MateriaSource Destructor called" << std::endl;
+	for (int i = 0; i < 4; i++)
+		delete _Inventory[i];
 }
 
 MateriaSource::MateriaSource(const MateriaSource& obj){
