@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmarzouk <rmarzouk@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 12:29:10 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/11/30 18:14:12 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/12/21 14:47:27 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,15 @@ class ClapTrap
 	public:
 
 		/*--------[constructors :]-----------------*/
-		ClapTrap();// default
-		ClapTrap(const std::string& Name);// parametrized
-		ClapTrap(ClapTrap &other); // copy constructor
+		ClapTrap();
+		ClapTrap(const std::string& Name);
+		ClapTrap(ClapTrap &other);
 
-		ClapTrap &operator=(const ClapTrap &other);// copy assignement operator
+		ClapTrap &operator=(const ClapTrap &other);
 	
 		/*--------[destructor :]-----------------*/
 		
-		virtual ~ClapTrap();// destructor
+		virtual ~ClapTrap();
 		
 		/*--------[setters :]-----------------*/
 		
@@ -53,7 +53,7 @@ class ClapTrap
 
 		/*--------[methodes :]-----------------*/
 		
-		virtual void attack(const std::string& target);// we want stravtrap to make its own attack methode so we make this virtual
+		virtual void attack(const std::string& target);
 		void takeDamage(int amount);
 		void beRepaired(int amount);
 };

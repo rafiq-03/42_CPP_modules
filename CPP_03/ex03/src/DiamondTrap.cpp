@@ -35,7 +35,7 @@ DiamondTrap::DiamondTrap(DiamondTrap &other){
 DiamondTrap &DiamondTrap::operator=(const DiamondTrap &other){
 	if (this == &other)
 		return (*this);
-	ClapTrap::_Name = ClapTrap::_Name;
+	ClapTrap::_Name = other.ClapTrap::_Name;
 	_Name = other._Name;
 	_HitPoints = other._HitPoints;
 	_EnergyPoints = other._EnergyPoints;

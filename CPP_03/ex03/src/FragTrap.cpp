@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FragTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmarzouk <rmarzouk@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 12:28:53 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/12/06 11:55:08 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/12/21 13:29:04 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 /*-[constructors : ]--------------*/
 
-FragTrap::FragTrap(){// default constructor
+FragTrap::FragTrap(){
 
 	_HitPoints = 100;
 	_EnergyPoints = 100;
@@ -34,7 +34,7 @@ FragTrap::FragTrap(const std::string& Name)
 
 FragTrap::FragTrap(FragTrap &other)
 {
-	_Name = other.getName();// check it later
+	_Name = other.getName();
 	_HitPoints = other.getHit();
 	_EnergyPoints = other.getEnergy();
 	_AttackDamage = other.getAttack();
@@ -45,7 +45,7 @@ FragTrap &FragTrap::operator=(const FragTrap &other)
 {
 	if (this == &other)
 		return (*this);
-	_Name = other.getName();// check it later
+	_Name = other.getName();
 	_HitPoints = other.getHit();
 	_EnergyPoints = other.getEnergy();
 	_AttackDamage = other.getAttack();

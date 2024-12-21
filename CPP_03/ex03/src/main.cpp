@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmarzouk <rmarzouk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 12:29:59 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/12/11 13:42:59 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/12/21 17:30:10 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,21 +26,13 @@ void	info(std::string stat, ClapTrap &ref)
 
 int main(void)
 {
-	DiamondTrap d("RAFIK");
-	DiamondTrap b(d);
-	DiamondTrap oper;
+	DiamondTrap d("furry");
 
-	oper = d;
-
-	info("DiamondTrap", d);
+	info("start", d);
 	d.whoAmI();
-	b.whoAmI();
-	oper.whoAmI();
-	std::cout << "|\n+------------------------------------------\n" << std::endl;
-	ClapTrap *dm = new DiamondTrap("YASSINE");
-	dm->attack("YASSINE");
-	delete dm;
-	std::cout << "|\n+------------------------------------------\n" << std::endl;
+	for (int i = 0; i < 50; i++)
+		d.attack("enemy");
+	info("end", d);
 	return 0;
 
 }

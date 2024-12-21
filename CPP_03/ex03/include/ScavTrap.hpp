@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmarzouk <rmarzouk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 12:29:10 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/12/11 12:50:22 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/12/21 14:47:03 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@ class ScavTrap : virtual public ClapTrap
 
 		/*--------[constructors :]-----------------*/
 		
-		ScavTrap();// default
-		ScavTrap(const std::string& Name);// parametrized
-		ScavTrap(ScavTrap &other); // copy constructor
+		ScavTrap();
+		ScavTrap(const std::string& Name);
+		ScavTrap(ScavTrap &other);
 
-		ScavTrap &operator=(const ScavTrap &other);// copy assignement operator
+		ScavTrap &operator=(const ScavTrap &other);
 	
 		/*--------[destructor :]-----------------*/
 		
-		~ScavTrap();// destructor
+		~ScavTrap();
 
 		/*--------[methodes :]-----------------*/
 		
