@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmarzouk <rmarzouk@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 12:29:10 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/11/30 18:59:46 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/12/21 13:31:12 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@ class FragTrap : public ClapTrap
 
 		/*--------[constructors :]-----------------*/
 		
-		FragTrap();// default
-		FragTrap(const std::string& Name);// parametrized
-		FragTrap(FragTrap &other); // copy constructor
+		FragTrap();
+		FragTrap(const std::string& Name);
+		FragTrap(FragTrap &other);
 
-		FragTrap &operator=(const FragTrap &other);// copy assignement operator
+		FragTrap &operator=(const FragTrap &other);
 	
 		/*--------[destructor :]-----------------*/
 		
-		~FragTrap();// destructor
+		~FragTrap();
 
 		/*--------[methodes :]-----------------*/
 		
