@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmarzouk <rmarzouk@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 12:29:59 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/11/30 18:37:15 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/12/21 17:08:22 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,31 +26,14 @@ void	info(std::string stat, ClapTrap &ref)
 
 int main(void)
 {
-	// ClapTrap *ptr1 = new ClapTrap("clappy");
-	// std::cout << "\n+------------------------------------------" << std::endl;
-	// std::cout << "| * Type          :  ClapTrap" << std::endl;
-	// std::cout << "| * Name          :  " << ptr1->getName() << std::endl;
-	// std::cout << "| * Hit Points    :  " << ptr1->getHit() << std::endl;
-	// std::cout << "| * Energy Points :  " << ptr1->getEnergy() << std::endl;
-	// std::cout << "| * Attack Damage :  " << ptr1->getAttack() << std::endl;
-	// std::cout << "+------------------------------------------\n" << std::endl;
-	// for (int i = 12; i >= 0; i--)
-	// 	ptr1->attack("enemy1");
-	// for (int i = 3; i >= 0; i--)
-	// 	ptr1->beRepaired(3);
-	// delete ptr1;
-	
-	std::cout << "\n\n--------------------------------\n" << std::endl;
-	
-	ClapTrap *ptr2 = new ScavTrap("Scav");
-	info("start", *ptr2);
+	ClapTrap *ptr = new ScavTrap("Scav");
+	info("start", *ptr);
 	for (int i = 45; i >= 0; i--)
-		ptr2->attack("enemy2");
+		ptr->attack("enemy2");
 	for (int i = 3; i >= 0; i--)
-		ptr2->beRepaired(6);
+		ptr->beRepaired(6);
 	for (int i = 3; i >= 0; i--)
-		ptr2->attack("enemy4");
-	info("end", *ptr2);
-	delete ptr2;
-
+		ptr->attack("enemy4");
+	info("end", *ptr);
+	delete ptr;
 }

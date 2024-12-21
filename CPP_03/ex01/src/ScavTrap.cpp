@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScavTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmarzouk <rmarzouk@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 12:28:53 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/12/06 11:54:35 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/12/21 13:41:37 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 /*-[constructors : ]--------------*/
 
-ScavTrap::ScavTrap(){// default constructor
+ScavTrap::ScavTrap(){
 
 	_HitPoints = 100;
 	_EnergyPoints = 50;
@@ -34,7 +34,7 @@ ScavTrap::ScavTrap(const std::string& Name)
 
 ScavTrap::ScavTrap(ScavTrap &other)
 {
-	_Name = other.getName();// check it later
+	_Name = other.getName();
 	_HitPoints = other.getHit();
 	_EnergyPoints = other.getEnergy();
 	_AttackDamage = other.getAttack();
@@ -45,7 +45,7 @@ ScavTrap &ScavTrap::operator=(const ScavTrap &other)
 {
 	if (this == &other)
 		return (*this);
-	_Name = other.getName();// check it later
+	_Name = other.getName();
 	_HitPoints = other.getHit();
 	_EnergyPoints = other.getEnergy();
 	_AttackDamage = other.getAttack();

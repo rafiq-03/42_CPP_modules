@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmarzouk <rmarzouk@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 12:28:53 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/12/06 11:54:22 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/12/21 13:25:28 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 /*-[constructors : ]--------------*/
 
-ClapTrap::ClapTrap(): _HitPoints(10), _EnergyPoints(10) , _AttackDamage (0) // need to check it later
+ClapTrap::ClapTrap(): _HitPoints(10), _EnergyPoints(10) , _AttackDamage (0)
 {
 	std::cout << "ClapTrap " << _Name << " is alive now :)" << std::endl;
 }
@@ -34,7 +34,7 @@ ClapTrap &ClapTrap::operator=(const ClapTrap &other)
 {
 	if (this == &other)
 		return (*this);
-	_Name = other.getName();// check it later
+	_Name = other.getName();
 	_HitPoints = other.getHit();
 	_EnergyPoints = other.getEnergy();
 	_AttackDamage = other.getAttack();
