@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 12:29:10 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/12/21 13:29:44 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/12/22 17:36:03 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ class ClapTrap
 	private:
 
 		std::string	  _Name;
-		int  _HitPoints;
-		int  _EnergyPoints;
-		int  _AttackDamage;
+		unsigned int  _HitPoints;
+		unsigned int  _EnergyPoints;
+		unsigned int  _AttackDamage;
 
 	public:
 
@@ -30,7 +30,6 @@ class ClapTrap
 		ClapTrap();
 		ClapTrap(const std::string& Name);
 		ClapTrap(ClapTrap &other);
-
 		ClapTrap &operator=(const ClapTrap &other);
 	
 		/*--------[destructor :]-----------------*/
@@ -40,22 +39,22 @@ class ClapTrap
 		/*--------[setters :]-----------------*/
 		
 		void	setName(const std::string Name);
-		void	setHit(const int amount);
-		void	setEnergy(const int amount);
-		void	setAttack(const int amount);
+		void	setHit(const unsigned int amount);
+		void	setEnergy(const unsigned int amount);
+		void	setAttack(const unsigned int amount);
 		
 		/*--------[getters :]-----------------*/
 		
 		std::string  getName(void)const;
-		int getHit(void) const;
-		int getEnergy(void) const;
-		int getAttack(void) const;
+		unsigned int getHit(void) const;
+		unsigned int getEnergy(void) const;
+		unsigned int getAttack(void) const;
 
 		/*--------[methodes :]-----------------*/
 		
 		void attack(const std::string& target);
-		void takeDamage(int amount);
-		void beRepaired(int amount);
+		void takeDamage(unsigned int amount);
+		void beRepaired(unsigned int amount);
 };
 
 

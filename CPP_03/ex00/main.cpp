@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmarzouk <rmarzouk@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 12:29:59 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/11/30 17:59:30 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/12/22 17:34:26 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int main(void)
 	for(int i=0; i < 5; i++)
 		clap.beRepaired(2);
 	clap.attack("enemy1");
-	while (clap.getHit() > 0)
+	for (int i = 0; i < 5; i++)
 		clap.takeDamage(10);
 	return (0);
 }
