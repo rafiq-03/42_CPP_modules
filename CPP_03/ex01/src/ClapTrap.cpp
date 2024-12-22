@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 12:28:53 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/12/21 13:25:28 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/12/22 10:31:33 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ ClapTrap::ClapTrap(ClapTrap &other): _Name (other.getName()), _HitPoints(other.g
 
 ClapTrap &ClapTrap::operator=(const ClapTrap &other)
 {
+	std::cout << "ClapTrap Copy assignement operator called" << std::endl;
 	if (this == &other)
 		return (*this);
 	_Name = other.getName();

@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rmarzouk <rmarzouk@student.42.fr>          +#+  +:+       +#+         #
+#    By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/14 16:33:55 by rmarzouk          #+#    #+#              #
-#    Updated: 2024/12/11 12:53:14 by rmarzouk         ###   ########.fr        #
+#    Updated: 2024/12/22 10:25:54 by rmarzouk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FLAGS= -Wall -Wextra -Werror -std=c++98 -fsanitize=address
+FLAGS= -Wall -Wextra -Werror -std=c++98 #-fsanitize=address
 CC = c++
 NAME= DiamondTrap
 HEADER= $(addprefix include/, \

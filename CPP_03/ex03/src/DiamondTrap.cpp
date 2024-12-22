@@ -20,8 +20,7 @@ DiamondTrap::DiamondTrap(): ScavTrap(), FragTrap(){
 	std::cout << "DiamondTrap " << _Name << " is alive now :)" << std::endl;
 }
 
-DiamondTrap::DiamondTrap(const std::string& Name): ScavTrap(Name), FragTrap(Name){
-	ClapTrap::setName(Name + "_clap_name");
+DiamondTrap::DiamondTrap(const std::string& Name): ClapTrap(Name + "_clap_name"){
 	_Name = Name;
 	_EnergyPoints = 50;
 	std::cout << "DiamondTrap " << _Name << " is alive now :)" << std::endl;
@@ -33,6 +32,7 @@ DiamondTrap::DiamondTrap(DiamondTrap &other){
 }
 
 DiamondTrap &DiamondTrap::operator=(const DiamondTrap &other){
+	std::cout << "DiamondTrap Copy assignement operator called" << std::endl;
 	if (this == &other)
 		return (*this);
 	ClapTrap::_Name = other.ClapTrap::_Name;
