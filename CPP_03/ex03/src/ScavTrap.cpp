@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 12:28:53 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/12/22 10:33:14 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/12/22 17:57:18 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ ScavTrap::ScavTrap(){
 	_EnergyPoints = 50;
 	_AttackDamage = 20;
 	std::cout << "ScavTrap " << _Name << " is alive now :)" << std::endl;
+}
+
+ScavTrap::ScavTrap(unsigned int _Points)
+{
+	_EnergyPoints = _Points;
 }
 
 ScavTrap::ScavTrap(const std::string& Name)

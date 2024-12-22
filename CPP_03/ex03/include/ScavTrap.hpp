@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 12:29:10 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/12/21 14:47:03 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/12/22 17:55:23 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ class ScavTrap : virtual public ClapTrap
 		/*--------[constructors :]-----------------*/
 		
 		ScavTrap();
+		ScavTrap(unsigned int _Hitpoint);
 		ScavTrap(const std::string& Name);
 		ScavTrap(ScavTrap &other);
 

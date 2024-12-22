@@ -15,14 +15,12 @@
 
 /*-[constructors : ]--------------*/
 
-DiamondTrap::DiamondTrap(): ScavTrap(), FragTrap(){
-	_EnergyPoints = 50;
+DiamondTrap::DiamondTrap(): ScavTrap(50), FragTrap(100, 30){
 	std::cout << "DiamondTrap " << _Name << " is alive now :)" << std::endl;
 }
 
-DiamondTrap::DiamondTrap(const std::string& Name): ClapTrap(Name + "_clap_name"){
+DiamondTrap::DiamondTrap(const std::string& Name): ClapTrap(Name + "_clap_name"), ScavTrap(50), FragTrap(100, 30){
 	_Name = Name;
-	_EnergyPoints = 50;
 	std::cout << "DiamondTrap " << _Name << " is alive now :)" << std::endl;
 }
 

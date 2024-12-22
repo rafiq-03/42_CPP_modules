@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 12:28:53 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/12/22 10:33:55 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/12/22 18:01:04 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@ FragTrap::FragTrap(const std::string& Name)
 	_EnergyPoints = 100;
 	_AttackDamage = 30;
 	std::cout << "FragTrap " << _Name << " is alive now :)" << std::endl;
+}
+FragTrap::FragTrap(unsigned int Hit, unsigned int attack)
+{
+	_HitPoints = Hit;
+	_AttackDamage = attack;
 }
 
 FragTrap::FragTrap(FragTrap &other)

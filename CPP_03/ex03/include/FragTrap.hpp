@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 12:29:10 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/12/21 14:44:58 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/12/22 17:58:56 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ class FragTrap : virtual public ClapTrap
 		/*--------[constructors :]-----------------*/
 		
 		FragTrap();
+		FragTrap(unsigned int Hit, unsigned int attack);
 		FragTrap(const std::string& Name);
 		FragTrap(FragTrap &other);
 
