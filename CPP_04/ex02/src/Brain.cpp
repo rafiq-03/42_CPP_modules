@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Brain.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmarzouk <rmarzouk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 19:07:30 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/12/14 12:11:37 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/12/24 11:46:38 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,11 @@
 Brain::Brain(void)
 {
 	std::cout << "Brain Default constructor called" << std::endl;
-	// we don't need to initialize ideas array because it's a string array
 }
 
 Brain::~Brain(void)
 {
 	std::cout << "Brain Destructor called" << std::endl;
-	// we don't need to delete ideas array because it's a string array
 }
 
 Brain::Brain(const Brain& obj)
