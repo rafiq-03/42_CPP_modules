@@ -12,8 +12,6 @@ class MateriaSource : public IMateriaSource
 		MateriaSource(void); // Default constructor
 		MateriaSource(const MateriaSource& obj); // Copy constructor
 		MateriaSource&	operator=(const MateriaSource& obj); // Copy assigment operator
-		// these are from IMateriaSource
-		// ~MateriaSource() {}
 		~MateriaSource(); // Destructor
 		void learnMateria(AMateria*);
 		AMateria* createMateria(std::string const & type);

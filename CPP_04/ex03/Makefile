@@ -6,7 +6,7 @@
 #    By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/14 16:33:55 by rmarzouk          #+#    #+#              #
-#    Updated: 2024/12/16 15:28:24 by rmarzouk         ###   ########.fr        #
+#    Updated: 2024/12/24 12:51:10 by rmarzouk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,14 +20,15 @@ HEADER=	$(addprefix include/, \
 						MateriaSource.hpp\
 						Character.hpp\
 						Cure.hpp\
-						Ice.hpp)
+						Ice.hpp\
+						Lists.hpp)
 SRC= $(addprefix src/, \
-						ICharacter.cpp\
 						MateriaSource.cpp\
 						AMateria.cpp\
 						Character.cpp\
 						Cure.cpp\
 						Ice.cpp\
+						Lists.cpp\
 						main.cpp)
 OBJ=$(SRC:.cpp=.o)
 

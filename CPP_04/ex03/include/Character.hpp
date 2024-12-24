@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Character.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmarzouk <rmarzouk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 16:37:13 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/12/16 11:26:22 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/12/24 13:31:17 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ class Character : public ICharacter
 {
 	private:
 		std::string	_Name;
-		AMateria*	_Inventory[4];// = new Materia[4] Character has 4 materias
-		List		_Materias;// this is a linked list of materias that character doesn't use them
+		AMateria*	_Inventory[4];
+		List		_Materias;
 	public:
 		Character(void); // Default constructor
 		Character(std::string const name); // Parametrized constructor

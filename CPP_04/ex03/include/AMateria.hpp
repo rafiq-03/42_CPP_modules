@@ -3,19 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   AMateria.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmarzouk <rmarzouk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 15:34:19 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/12/15 13:34:52 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/12/24 12:55:08 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef AMATERIA_HPP
 # define AMATERIA_HPP
 # include <iostream>
-#include "ICharacter.hpp"// need to check later loop back include
+#include "ICharacter.hpp"
 
-class ICharacter;// prevent dependency include
+#ifndef D_MODE
+# define D_MODE 1
+#endif
+class ICharacter;
 
 class AMateria
 {
@@ -31,7 +34,7 @@ class AMateria
 		virtual	~AMateria(); // Destructor
 
 		virtual AMateria* clone() const = 0;
-		virtual void use(ICharacter& target);// to do 
+		virtual void use(ICharacter& target);
 };
 
 #endif
