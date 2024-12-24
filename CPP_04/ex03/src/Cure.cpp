@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 15:39:33 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/12/24 12:07:49 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/12/24 12:34:45 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,5 @@ Cure* Cure::clone() const {
 }
 
 void Cure::use(ICharacter& target){
-	std::cout << "* heals [ " << target.getName() << " ] \'s wounds *" << std::endl;
+	std::cout << "* heals " << target.getName() << " \'s wounds *" << std::endl;
 }

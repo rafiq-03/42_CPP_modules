@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 15:34:21 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/12/24 12:04:29 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/12/24 12:37:38 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,22 @@ AMateria::AMateria(void){
 		std::cout << "AMateria Default constructor called" << std::endl;
 }
 
-AMateria::AMateria(std::string const & type){(void)type;}
+AMateria::AMateria(std::string const & type)
+{
+	if (D_MODE)
+		std::cout << "AMateria Parametrized constructor called" << std::endl;
+	_Type = type;
+}
 
 AMateria::~AMateria(void){
 	if (D_MODE)
 		std::cout << "AMateria Destructor called" << std::endl;
 }
 
-AMateria::AMateria(const AMateria& obj){(void)obj;
+AMateria::AMateria(const AMateria& obj){
 	if (D_MODE)
 		std::cout << "AMateria Copy constructor called" << std::endl;
+	(void)obj;
 }
 
 AMateria& AMateria::operator=(const AMateria& obj){
@@ -41,6 +47,6 @@ std::string const & AMateria::getType() const{
 }
 
 void AMateria::use(ICharacter& target){
-	(void)target;
+	std::cout << "Unknoun Materia heal or shoot " << target.getName() << std::endl;
 }
 
