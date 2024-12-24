@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 10:35:36 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/12/24 13:30:07 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/12/24 13:42:37 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	myTest(){
 
 int main(void)
 {
-	// subjectTest();
+	subjectTest();
 	myTest();
 	system("leaks -q recap");
 	return 0;

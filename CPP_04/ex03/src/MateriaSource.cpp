@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 11:04:24 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/12/24 13:23:14 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/12/24 13:41:46 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ void MateriaSource::learnMateria(AMateria*  m){
 			return;
 		}
 	}
-	std::cerr << "MateriaSource : inventory is full" << std::endl; 
+	delete m;
+	std::cerr << "MateriaSource : inventory is full" << std::endl;
 }
 
 AMateria* MateriaSource::createMateria(std::string const & type){
