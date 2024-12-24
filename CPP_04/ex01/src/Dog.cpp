@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmarzouk <rmarzouk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 15:34:29 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/12/14 13:22:50 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/12/24 11:19:39 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,5 @@ Dog& Dog::operator=(const Dog& obj)
 
 void	Dog::makeSound(void) const
 {
-	std::cout << "Dog: How How" << std::endl;
+	std::cout << "Dog: Bark Bark" << std::endl;
 }

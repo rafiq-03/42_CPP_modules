@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmarzouk <rmarzouk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 12:29:59 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/12/14 13:20:30 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/12/24 11:49:50 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	deepCopy(void)
 	Cat* catA = new Cat();
 	Cat* catB = new Cat(*catA);
 
-	std::cout << "catA: " << catA << std::endl;
-	std::cout << "catB: " << catB << std::endl;
+	std::cout << "catA : " << catA << std::endl;
+	std::cout << "catB : " << catB << std::endl;
 	delete catA;
 	delete catB;
 	std::cout << "\n-----------------------------------\n" << std::endl;
@@ -34,7 +34,7 @@ void	deepCopy(void)
 int main()
 {
 	deepCopy();
-	std::cout << "---------[ test: ]----------\n" << std::endl;
+	std::cout << "---------[ subject test: ]----------\n" << std::endl;
 	Animal *cat = new Cat();
 	Animal *dog = new Dog();
 
@@ -49,11 +49,12 @@ int main()
 			animals[i] = new Dog();
 		else
 			animals[i] = new Cat();
+		animals[i]->makeSound();
 	}
 	for(int i = 0; i < 6; i++)
 		delete animals[i];
 	std::cout << "\n-----------------------------------\n" << std::endl;
 	system("leaks -q Animal");
-	// return 0;
+	return 0;
 }
 
