@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 10:35:36 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/12/24 11:59:15 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/12/24 13:30:07 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 #include "../include/Ice.hpp"
 #include "../include/MateriaSource.hpp"
 #include "../include/IMateriaSource.hpp"
-#include "Lists.cpp"
+
 void	subjectTest(){
-	std::cout << "Subject test" << std::endl;
+	std::cout << "------------[ Subject test ]-----------\n" << std::endl;
 	IMateriaSource* src = new MateriaSource();
 	src->learnMateria(new Ice());
 	src->learnMateria(new Cure());
@@ -34,28 +34,27 @@ void	subjectTest(){
 	me->use(1, *bob);
 	delete bob;
 	delete me;
-	delete src;	
+	delete src;
+	std::cout << "\n---------------------------------------\n" << std::endl;
 }
 
-
 void	myTest(){
-	std::cout << "My test" << std::endl;
+	std::cout << "--------------[ My test ]--------------\n" << std::endl;
 	IMateriaSource* src = new MateriaSource();
 	src->learnMateria(new Ice());
 	src->learnMateria(new Cure());
 	src->learnMateria(new Ice());
 	src->learnMateria(new Cure());
-	ICharacter* me = new Character("ElMountahi");
-	ICharacter *enemy = new Character("Enemy");
+	src->learnMateria(new Cure());
+	ICharacter* me = new Character("El-Madani");
+	ICharacter *enemy = new Character("chiwahed");
 	for (size_t i = 0; i < 4; i++)
 	{
-		if (i % 2 == 0)
-		{
+		if (i % 2 != 0){
 			AMateria* tmp = src->createMateria("ice");
 			me->equip(tmp);
 		}
-		else 
-		{
+		else {
 			AMateria* tmp = src->createMateria("cure");
 			me->equip(tmp);
 		}
@@ -66,16 +65,18 @@ void	myTest(){
 	me->use(1, *enemy);
 	me->unequip(0);
 	me->unequip(1);
+	me->unequip(2);
 	me->use(1, *enemy);
 	delete src;
 	delete me;
 	delete enemy;
 	delete tmp;
+	std::cout << "\n---------------------------------------\n" << std::endl;
 }
 
 int main(void)
 {
-	subjectTest();
+	// subjectTest();
 	myTest();
 	system("leaks -q recap");
 	return 0;

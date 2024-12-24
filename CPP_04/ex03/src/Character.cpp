@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 16:37:15 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/12/24 12:06:46 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/12/24 13:28:58 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ Character::Character(const Character& obj){
 	for (int i = 0; i < 4; i++){
 		if (obj._Inventory[i])
 			_Inventory[i] = obj._Inventory[i]->clone();
+		else
+			_Inventory[i] = NULL;
 	}
 	_Materias = obj._Materias.clone();
 }

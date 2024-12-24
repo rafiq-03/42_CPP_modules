@@ -3,23 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   Lists.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmarzouk <rmarzouk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 10:30:19 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/12/16 13:42:44 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/12/24 13:08:46 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/Lists.hpp"
 
-Node::Node(AMateria *materia) : Materia(materia),Next(NULL){}
+Node::Node(AMateria *materia) : Materia(materia),Next(NULL)
+{
+    if (D_MODE)
+        std::cout << "Node constructor called" << std::endl;
+}
 
 Node::~Node(){
+    if (D_MODE)
+        std::cout << "Node destructor called" << std::endl;
     delete Materia;
     Materia = NULL;
 }
 
-List::List() : head(NULL){}
+List::List() : head(NULL)
+{
+    if (D_MODE)
+        std::cout << "List constructor called" << std::endl;
+}
 
 void List::add(AMateria *materia){
     Node *newNode = new Node(materia);
@@ -41,6 +51,8 @@ List List::clone(void)const
 
 List::~List()
 {
+    if (D_MODE)
+        std::cout << "List destructor called" << std::endl;
     Node *tmp = head;
     Node *cur;
 

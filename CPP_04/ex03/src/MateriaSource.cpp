@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 11:04:24 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/12/24 12:09:45 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/12/24 13:23:14 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,12 @@ MateriaSource::MateriaSource(const MateriaSource& obj){
 	if (D_MODE)
 		std::cout << "MateriaSource Copy constructor called" << std::endl;
 	for (int i = 0; i < 4; i++)
-		this->_Inventory[i] = obj._Inventory[i]->clone();
+	{
+		if (obj._Inventory[i])
+			this->_Inventory[i] = obj._Inventory[i]->clone();
+		else
+			this->_Inventory[i] = NULL;
+	}
 }
 
 MateriaSource& MateriaSource::operator=(const MateriaSource& obj){
