@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   WrongDog.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmarzouk <rmarzouk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 15:34:29 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/12/11 18:41:59 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2024/12/24 11:20:13 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,5 @@ WrongDog& WrongDog::operator=(const WrongDog& obj)
 
 void	WrongDog::makeSound(void) const
 {
-	std::cout << "WrongDog: How How" << std::endl;
+	std::cout << "WrongDog: Bark Bark" << std::endl;
 }
