@@ -1,0 +1,57 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/25 09:26:22 by rmarzouk          #+#    #+#             */
+/*   Updated: 2025/01/25 09:30:03 by rmarzouk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef BUREAUCRAT_HPP
+# define BUREAUCRAT_HPP
+# include <iostream>
+
+#ifndef DEBUG
+#define DEBUG 0
+#endif
+
+class Bureaucrat
+{
+	private:
+		const std::string	_Name;
+		int					_Grade;
+	public:
+		Bureaucrat(void);
+		Bureaucrat(std::string Name, int Grade);
+		Bureaucrat(const Bureaucrat& obj);
+		Bureaucrat&	operator=(const Bureaucrat& obj);
+		~Bureaucrat();
+
+	/*--------[ setters & getters ]--------------*/
+
+	std::string	getName(void)  const;
+	int			getGrade(void) const;
+
+	void incrementGrade(void);
+	void decrementGrade(void);
+
+	class GradeTooHighException : public std::exception
+	{
+		public:
+			const char *what() const throw();
+	};
+
+	class GradeTooLowException : public std::exception
+	{
+		public:
+			const char *what() const throw();
+	};
+};
+
+
+std::ostream &operator<<(std::ostream &out, Bureaucrat &bureaucrat);
+
+#endif
