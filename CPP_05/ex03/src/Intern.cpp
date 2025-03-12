@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:33:35 by rmarzouk          #+#    #+#             */
-/*   Updated: 2025/01/25 18:20:32 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2025/03/12 19:23:50 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,5 @@ AForm *Intern::makeRobotomyRequestForm(std::string Target)
 }
 AForm *Intern::makePresidentialPardonForm(std::string Target)
 {
-	return (new RobotomyRequestForm(Target));
+	return (new PresidentialPardonForm(Target));
 }

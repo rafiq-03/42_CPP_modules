@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 18:20:32 by rmarzouk          #+#    #+#             */
-/*   Updated: 2025/01/25 18:31:55 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2025/03/12 19:21:40 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,28 +19,31 @@
 #include "../include/RobotomyRequestForm.hpp"
 #include "../include/Intern.hpp"
 
-void test()
+
+int main(int ac, char **av)
 {
+    if (ac != 2)
+        return (1);
+    std::string name(av[1]);
     try
     {
-        Bureaucrat bur("test", 1);
+        Bureaucrat bur("bureaucrat", 1);
         std::cout << bur << std::endl;
+        std::cout << "-----------------------------------------------\n" << std::endl;
 
         Intern maker;
 
-        AForm *form = maker.makeForm("ShrubberyCreation", "tree");
+        AForm *form = maker.makeForm(name, "form");
+        if (!form)
+            throw std::runtime_error("form name not found");
         bur.signForm(*form);
         std::cout << *form << std::endl;
-        bur.executeForm(*form);        
+        std::cout << "\n-----------------------------------------------\n" << std::endl;
+        bur.executeForm(*form);
+        delete form;   
     }
     catch(const std::exception& e)
     {
         std::cerr << e.what() << std::endl;
     }
-}
-
-int main(void)
-{
-    test();
-    system ("leaks -q Bureaucrat");
 }
