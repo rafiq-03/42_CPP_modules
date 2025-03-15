@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 18:28:10 by rmarzouk          #+#    #+#             */
-/*   Updated: 2025/01/25 09:25:49 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2025/03/15 13:27:33 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ Bureaucrat::~Bureaucrat(void)
 		std::cout << "Bureaucrat Destructor called" << std::endl;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& obj)
+Bureaucrat::Bureaucrat(const Bureaucrat& obj):_Name(obj._Name)
 {
 	if (DEBUG)
 		std::cout << "Bureaucrat Copy constructor called" << std::endl;

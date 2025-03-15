@@ -6,11 +6,11 @@
 #    By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/14 16:33:55 by rmarzouk          #+#    #+#              #
-#    Updated: 2025/01/24 20:26:14 by rmarzouk         ###   ########.fr        #
+#    Updated: 2025/03/15 13:35:15 by rmarzouk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FLAGS= -Wall -Wextra -Werror -std=c++98 #-fsanitize=address
+FLAGS= -Wall -Wextra -Werror -std=c++98
 CC = c++
 NAME= Bureaucrat
 HEADER=	Bureaucrat.hpp
@@ -29,7 +29,4 @@ clean:
 	rm -rf $(OBJ)
 fclean:clean
 	rm -rf $(NAME)
-re:
-	@make fclean
-	@make all
-	
+re: fclean all

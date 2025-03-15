@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 09:26:22 by rmarzouk          #+#    #+#             */
-/*   Updated: 2025/01/25 09:30:03 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2025/03/15 13:40:25 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ class Bureaucrat
 	private:
 		const std::string	_Name;
 		int					_Grade;
-	public:
 		Bureaucrat(void);
+	public:
 		Bureaucrat(std::string Name, int Grade);
 		Bureaucrat(const Bureaucrat& obj);
 		Bureaucrat&	operator=(const Bureaucrat& obj);
