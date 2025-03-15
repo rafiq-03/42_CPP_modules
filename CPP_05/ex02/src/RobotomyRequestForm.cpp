@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:33:18 by rmarzouk          #+#    #+#             */
-/*   Updated: 2025/01/25 17:29:33 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2025/03/12 18:04:12 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& o
 void RobotomyRequestForm::executeAction(void) const {
 	std::cout << "Makes some drilling noises..." << std::endl;
 	std::srand(std::time(NULL));
-    if (std::rand() % 3){
+    if (std::rand() % 2){
         std::cout << _target << " has been robotomized successfully!" << std::endl;
     } else {
         std::cout << "Robotomy of " << _target << " failed." << std::endl;
