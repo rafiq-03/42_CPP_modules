@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 10:11:29 by rmarzouk          #+#    #+#             */
-/*   Updated: 2025/01/25 11:43:11 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2025/03/12 17:44:22 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int			Form::getGradeToExecute(void) const{
 	return (_GradeToExecute);
 }
 
-void AForm::setSignedstatus(bool status){
+void Form::setSignedstatus(bool status){
 	_IsSigned = status;
 }
 
