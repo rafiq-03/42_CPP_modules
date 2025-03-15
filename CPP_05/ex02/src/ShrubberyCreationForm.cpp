@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 11:27:08 by rmarzouk          #+#    #+#             */
-/*   Updated: 2025/01/25 16:11:58 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2025/03/15 14:05:03 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,11 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
 
 void ShrubberyCreationForm::executeAction(void) const {
 	std::ofstream file(_target + "_shrubbery");
+	if (!file.is_open())
+	{
+		std::cerr << "Can't open this file" << std::endl;
+		return;
+	}
 	file <<\
 	"	    ccoo cc\n"
 	"	  ccee88oo 88oo\n"

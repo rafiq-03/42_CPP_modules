@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 11:27:37 by rmarzouk          #+#    #+#             */
-/*   Updated: 2025/03/12 17:51:10 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2025/03/15 14:02:05 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ class ShrubberyCreationForm : public AForm
 		ShrubberyCreationForm&	operator=(const ShrubberyCreationForm& obj);
 		~ShrubberyCreationForm();
 		
-		virtual void executeAction(void) const;
+		void executeAction(void) const;
 };
 
 #endif

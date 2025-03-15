@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:20:24 by rmarzouk          #+#    #+#             */
-/*   Updated: 2025/03/12 17:50:59 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2025/03/15 14:02:00 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class PresidentialPardonForm : public AForm
 		PresidentialPardonForm&	operator=(const PresidentialPardonForm& obj);
 		~PresidentialPardonForm();
 		
-		virtual void executeAction(void) const;
+		void executeAction(void) const;
 };
 
 #endif

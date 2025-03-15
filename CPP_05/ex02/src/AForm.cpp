@@ -80,7 +80,7 @@ void AForm::execute(Bureaucrat const & executor) const{
 	if (!_IsSigned)
 		throw (NotSignedException());
 	else if (executor.getGrade() >= _GradeToExecute)
-		throw (Bureaucrat::GradeTooLowException());// need to check it later
+		throw (Bureaucrat::GradeTooLowException());
 	executeAction();
 }
 
