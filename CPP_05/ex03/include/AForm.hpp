@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 10:11:25 by rmarzouk          #+#    #+#             */
-/*   Updated: 2025/01/25 16:10:54 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2025/03/15 14:30:29 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,11 @@ class AForm
 		bool				_IsSigned;
 		const int			_GradeToSigne;
 		const int			_GradeToExecute;
-	public:
 		AForm(void);
+	protected:
+		void		setSignedstatus(bool status);
+
+	public:
 		AForm(std::string Name, int GradeToSigne, int GradeToExecute);
 		AForm(const AForm& obj);
 		AForm&	operator=(const AForm& obj);
@@ -36,8 +39,6 @@ class AForm
 		bool		IsSigned(void) const;
 		int			getGradeToSigne(void) const;
 		int			getGradeToExecute(void) const;
-
-		void setSignedstatus(bool status);
 
 		void beSigned(Bureaucrat &bureaucrat);
 		void execute(Bureaucrat const & executor) const;
