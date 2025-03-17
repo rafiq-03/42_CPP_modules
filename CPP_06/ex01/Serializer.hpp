@@ -6,20 +6,16 @@
 /*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 10:51:56 by rmarzouk          #+#    #+#             */
-/*   Updated: 2025/02/06 11:08:55 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2025/03/17 22:29:33 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SERIALIZER_HPP
 # define SERIALIZER_HPP
-# include <iostream>
-
-typedef int  Data;
+# include "Data.hpp"
 
 class Serializer
 {
-	private:
-
 	public:
 		Serializer(void);
 		Serializer(const Serializer& obj);

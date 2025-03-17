@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 10:51:53 by rmarzouk          #+#    #+#             */
-/*   Updated: 2025/02/06 11:11:56 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2025/03/17 22:31:03 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,16 @@ Serializer::Serializer(void)
 	std::cout << "Serializer Default constructor called" << std::endl;
 }
 
-Serializer::~Serializer(void)
-{
-	std::cout << "Serializer Destructor called" << std::endl;
-}
-
 Serializer::Serializer(const Serializer& obj)
 {
 	std::cout << "Serializer Copy constructor called" << std::endl;
-	(void)obj;
+	static_cast<void>(obj);
 }
 
 Serializer& Serializer::operator=(const Serializer& obj)
 {
 	std::cout << "Serializer Copy assignment operator called" << std::endl;
-	if (this != &obj)
-		return (*this);
+	static_cast<void>(obj);
 	return (*this);
 }
 
