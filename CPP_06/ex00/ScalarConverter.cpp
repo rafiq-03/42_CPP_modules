@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 13:07:14 by rmarzouk          #+#    #+#             */
-/*   Updated: 2025/02/06 15:36:13 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2025/03/17 22:11:49 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,71 +14,54 @@
 
 ScalarConverter::ScalarConverter(void)
 {
-	std::cout << "ScalarConverter Default constructor called" << std::endl;
+	if (DEBUG)
+		std::cout << "ScalarConverter Default constructor called" << std::endl;
 }
 
 ScalarConverter::~ScalarConverter(void)
 {
-	std::cout << "ScalarConverter Destructor called" << std::endl;
+	if (DEBUG)
+		std::cout << "ScalarConverter Destructor called" << std::endl;
 }
 
 ScalarConverter::ScalarConverter(const ScalarConverter& obj)
 {
-	(void)obj;
-	std::cout << "ScalarConverter Copy constructor called" << std::endl;
+	if (DEBUG)
+		std::cout << "ScalarConverter Copy constructor called" << std::endl;
+	static_cast<void>(obj);
 }
 
 ScalarConverter& ScalarConverter::operator=(const ScalarConverter& obj)
 {
-	std::cout << "ScalarConverter Copy assignment operator called" << std::endl;
-	if (this != &obj)
-	{
-		// Add any assignment logic here
-	}
+	if (DEBUG)
+		std::cout << "ScalarConverter Copy assignment operator called" << std::endl;
+	static_cast<void>(obj);
 	return (*this);
 }
 
-bool	isInt(std::string &input){
+static bool	isInt(const std::string &input){
 	size_t i = 0;
-	if (input.at(0) == '-' || input.at(0) == '+')
-		i = 1;
+	if (input[0] == '-' || input[0] == '+')
+		i++;
 	while (i < input.size())
 	{
-		if (!isdigit(input.at(i)))
+		if (!isdigit(input[i]))
 			return (false);
 		i++;
 	}
 	return (true);
 }
 
-bool	isFloat(std::string &input){
+static bool	isDouble(const std::string &input){
 	size_t	i 			= 0;
 	int		DotCounter	= 0;
-
-	if (input.at(0) == '-' || input.at(0) == '+')
-		i = 1;
-	while (i < input.size() - 1)
-	{
-		if (input.at(i) == '.'){
-			DotCounter++;
-			i++;
-			continue;
-		}
-		if (!isdigit(input.at(i)))
-			return (false);
-		i++;
-	}
-	return (DotCounter == 1 && input.at(i) == 'f');
-}
-
-bool	isDouble(std::string &input){
-	size_t	i 			= 0;
-	int		DotCounter	= 0;
-	if (input.at(0) == '-' || input.at(0) == '+')
+	if (input[i] == '-' || input[i] == '+')
 		i = 1;
 	while (i < input.size())
 	{
-		if (input.at(i) == '.'){
+		if (input[i] == '.'){
+			if (i == input.size() - 1)
+				return (false);
 			DotCounter++;
 			i++;
 			continue;
@@ -90,54 +73,110 @@ bool	isDouble(std::string &input){
 	return (DotCounter == 1);
 }
 
-bool isSpecial(const std::string& input) {
-    return (input == "nan" || input == "nanf" || input == "+inf" 
-			|| input == "-inf" || input == "+inff" || input == "-inff");
+static bool	isFloat(const std::string &input){
+	size_t	i 			= 0;
+	int		DotCounter	= 0;
+
+	if (input[0] == '-' || input[0] == '+')
+		i++;
+	while (i < input.size() - 1)
+	{
+		if (input[i] == '.'){
+			if (input[i + 1] == 'f')
+				return (false);
+			DotCounter++;
+			i++;
+			continue;
+		}
+		if (!isdigit(input[i]))
+			return (false);
+		i++;
+	}
+	return (DotCounter == 1 && input[i] == 'f');
+}
+
+Type	getType(const std::string &input){
+	if (input == "nan" || input == "nanf" || input == "+inf" || input == "-inf" || input == "+inff" || input == "-inff")
+		return (SPECIAL);
+	else if (input.length() == 1 && !isdigit(input[0]) && isprint(input[0]))
+		return (CHAR);
+	else if (isInt(input))
+		return (INT);
+	else if (isDouble(input))
+		return (DOUBLE);
+	else if (isFloat(input))
+		return (FLOAT);
+	else
+		return (UNDEFINED);
+}
+
+static void convertToChar(std::string &input, double value, Type type){
+	std::cout << "char: ";
+	if (type == CHAR){
+		std::cout << static_cast<char>(input[0]) << std::endl;
+	}
+	else if (type == SPECIAL){
+		std::cout << "impossible" << std::endl;
+	}
+	else if (std::isprint(static_cast<int>(value)))
+		std::cout << static_cast<char>(value) << std::endl;
+	else
+		std::cout << "Non displayable" << std::endl;
+}
+
+static void convertToInt(std::string &input, double value, Type type){
+	std::cout << "int: ";
+	if (type == SPECIAL)
+		std::cout << "impossible" << std::endl;
+	else if (type == CHAR)
+		std::cout << static_cast<int>(input[0]) << std::endl;
+	else
+		std::cout << static_cast<int>(value) << std::endl;
+}
+
+static void convertToFloat(std::string &input, double value, Type type){
+	std::cout << "float: ";
+	if (type == CHAR)
+		std::cout << static_cast<float>(input[0]) << ".0f" << std::endl;
+	else if (type == SPECIAL)
+	{
+		if (input == "nan" || input == "+inf" || input == "-inf")
+			std::cout << input << "f" << std::endl;
+		else
+			std::cout << input << std::endl;
+	}
+	else if (type == INT || (value - static_cast<int>(value) == 0))
+		std::cout << static_cast<float>(value) << ".0f" <<std::endl;
+	else
+		std::cout << std::fixed << std::setprecision(1) << static_cast<float>(value) << "f" << std::endl;
+}
+
+static void convertToDouble(std::string &input, double value, Type type){
+	std::cout << "double: ";
+	if (type == CHAR)
+		std::cout << static_cast<float>(input[0]) << ".0" << std::endl;
+	else if (type == SPECIAL)
+	{
+		if (input == "nan" || input == "+inf" || input == "-inf")
+			std::cout << input << std::endl;
+		else
+			std::cout << input.erase(input.length() - 1) << std::endl;
+	}
+	else if (type == INT || (value - static_cast<int>(value) == 0))
+		std::cout << value << ".0" <<std::endl;
+	else
+		std::cout << std::fixed << std::setprecision(1) << value << std::endl;
 }
 
 void ScalarConverter::convert(std::string &input) {
-    int i;
-    float f;
-    double d;
-    char c;
-    
-    if (isInt(input)) {
-        i = std::atoi(input.c_str());
-        f = static_cast<float>(i);
-        d = static_cast<double>(i);
-        c = static_cast<char>(i);
-    }
-    else if (isFloat(input)) {
-        f = std::atof(input.c_str());
-        d = static_cast<double>(f);
-        i = static_cast<int>(f);
-        c = static_cast<char>(i);
-    }
-    else if (isDouble(input)) {
-        d = std::atof(input.c_str());
-        f = static_cast<float>(d);
-        i = static_cast<int>(d);
-        c = static_cast<char>(i);
-    }
-    else if (isSpecial(input)) {
-		if (input[4])
-			input[4] = '\0';
-		std::cout << "char  : " << "impossible" << std::endl;
-		std::cout << "int   : " << "impossible" << std::endl;
-		std::cout << "float : " << input << "f" << std::endl;
-		std::cout << "double: " << input << std::endl;
+	Type _type = getType(input);
+	if (_type == UNDEFINED){
+		std::cerr << "Invalid Input" << std::endl;
 		return;
-    }
-    else {
-        std::cout << "Invalid input" << std::endl;
-        return;
-    }
-	if ((i >= 32 && i <= 126))
-    	std::cout << "char  : " <<  c << std::endl;
-	else
-		std::cout << "char  : Non displayable" << std::endl;
-    std::cout << "int   : " << i << std::endl;
-    std::cout << "float : " << std::fixed << std::setprecision(1) << f << "f" << std::endl;
-    std::cout << "double: " << d << std::endl;
+	}
+	double value = std::strtod(input.c_str(), NULL);
+	convertToChar(input, value, _type);
+	convertToInt(input, value, _type);
+	convertToFloat(input, value, _type);
+	convertToDouble(input, value, _type);
 }
-
