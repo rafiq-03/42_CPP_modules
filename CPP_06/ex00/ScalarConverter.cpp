@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 13:07:14 by rmarzouk          #+#    #+#             */
-/*   Updated: 2025/03/17 22:11:49 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2025/03/18 11:17:00 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ Type	getType(const std::string &input){
 static void convertToChar(std::string &input, double value, Type type){
 	std::cout << "char: ";
 	if (type == CHAR){
-		std::cout << static_cast<char>(input[0]) << std::endl;
+		std::cout << input << std::endl;
 	}
 	else if (type == SPECIAL){
 		std::cout << "impossible" << std::endl;

@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:29:55 by rmarzouk          #+#    #+#             */
-/*   Updated: 2025/02/06 12:47:18 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2025/03/18 10:55:19 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,12 @@ void identify(Base& p){
 
 int main(void)
 {
-    Base *test = generate();
-    // int *p = NULL;
-    // identify(reinterpret_cast<Base*>(p));
-    identify(*test);
+    Base *test1 = generate();
+    std::cout << "Pointer:" << std::endl;
+    identify(test1);
+    std::cout << "Reference:" << std::endl;
+    Base *test2 = generate();
+    identify(*test2);
+    delete test1;
+    delete test2;
 }
