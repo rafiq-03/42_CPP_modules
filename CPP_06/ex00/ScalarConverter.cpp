@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 13:07:14 by rmarzouk          #+#    #+#             */
-/*   Updated: 2025/03/18 11:17:00 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2025/03/18 11:27:06 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,8 +145,6 @@ static void convertToFloat(std::string &input, double value, Type type){
 		else
 			std::cout << input << std::endl;
 	}
-	else if (type == INT || (value - static_cast<int>(value) == 0))
-		std::cout << static_cast<float>(value) << ".0f" <<std::endl;
 	else
 		std::cout << std::fixed << std::setprecision(1) << static_cast<float>(value) << "f" << std::endl;
 }
@@ -154,7 +152,7 @@ static void convertToFloat(std::string &input, double value, Type type){
 static void convertToDouble(std::string &input, double value, Type type){
 	std::cout << "double: ";
 	if (type == CHAR)
-		std::cout << static_cast<float>(input[0]) << ".0" << std::endl;
+		std::cout << static_cast<double>(input[0]) << ".0" << std::endl;
 	else if (type == SPECIAL)
 	{
 		if (input == "nan" || input == "+inf" || input == "-inf")
@@ -162,8 +160,6 @@ static void convertToDouble(std::string &input, double value, Type type){
 		else
 			std::cout << input.erase(input.length() - 1) << std::endl;
 	}
-	else if (type == INT || (value - static_cast<int>(value) == 0))
-		std::cout << value << ".0" <<std::endl;
 	else
 		std::cout << std::fixed << std::setprecision(1) << value << std::endl;
 }
