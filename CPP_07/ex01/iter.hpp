@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 16:36:41 by rmarzouk          #+#    #+#             */
-/*   Updated: 2025/03/18 17:52:14 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2025/03/19 17:18:41 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@
 #include <iostream>
 
 template <typename T>
-void iter(T *array, size_t length, void func(T &element)){
+void iter(T *array, size_t length, void func(T&)){
     if (!array)
-        return;
+        return ;
     for (size_t i = 0; i < length; i++)
         func(array[i]);
 }
 
-template<typename m> 
-void function(m &element)
+template<typename T> 
+void printElement(T &element)
 {
-    element += 1;
+    std::cout << element << std::endl;
 }
 
 #endif
