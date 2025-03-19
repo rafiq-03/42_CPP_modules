@@ -6,14 +6,14 @@
 #    By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/14 16:33:55 by rmarzouk          #+#    #+#              #
-#    Updated: 2025/02/06 15:40:15 by rmarzouk         ###   ########.fr        #
+#    Updated: 2025/03/18 17:46:54 by rmarzouk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FLAGS= -Wall -Wextra -Werror -std=c++98 #-fsanitize=address
+FLAGS= -Wall -Wextra -Werror -std=c++98
 CC = c++
 NAME= name
-HEADER=
+HEADER=header.hpp
 SRC= main.cpp
 OBJ=$(SRC:.cpp=.o)
 
@@ -30,4 +30,3 @@ clean:
 fclean:clean
 	rm -rf $(NAME)
 re: fclean all
-	

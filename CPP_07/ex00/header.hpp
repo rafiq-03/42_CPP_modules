@@ -1,40 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Array.hpp                                          :+:      :+:    :+:   */
+/*   header.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/06 16:59:18 by rmarzouk          #+#    #+#             */
-/*   Updated: 2025/03/18 14:55:16 by rmarzouk         ###   ########.fr       */
+/*   Created: 2025/03/18 17:48:47 by rmarzouk          #+#    #+#             */
+/*   Updated: 2025/03/18 17:48:57 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ARRAY_HPP
-# define ARRAY_HPP
-# include <iostream>
+#pragma once
 
-#ifndef DEBUG
-#define DEBUG 0
-#endif
+#include<iostream>
 
-template<typename T>
-class Array
+template <typename T>
+T max(const T a, const T b)
 {
-	private:
-		T		*_Data;
-		size_t	_size;
-	public:
-		Array(void);
-		Array(unsigned int n);
-		Array(const Array& obj);
-		Array&	operator=(const Array& obj);
-		T&	operator[](unsigned int index);
-		size_t	size(void) const;
-		~Array();
+    return(a > b ? a : b);
+}
 
-};
+template <typename T>
+T min(const T a, const T b)
+{
+    return(a < b ? a : b);
+}
 
-#endif
+template<class T>
+void swap(T &a, T&b)
+{
+    T tmp;
 
-#include "Array.tpp"
+    tmp  = a;
+    a = b;
+    b = tmp;
+}
