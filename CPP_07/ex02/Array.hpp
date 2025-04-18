@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 16:59:18 by rmarzouk          #+#    #+#             */
-/*   Updated: 2025/04/18 18:24:57 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2025/04/18 18:44:12 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ class Array
 		Array(const Array& obj);
 		Array&	operator=(const Array& obj);
 		T&	operator[](unsigned int index);
+		const T&	operator[](unsigned int index) const;
 		size_t	size(void) const;
 		~Array();
 

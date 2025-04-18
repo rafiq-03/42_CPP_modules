@@ -6,12 +6,12 @@
 /*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 17:00:15 by rmarzouk          #+#    #+#             */
-/*   Updated: 2025/04/18 18:27:26 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2025/04/18 18:44:29 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 template<typename T>
-Array<T>::Array(void):_Data(new T[0]()), _size(0)
+Array<T>::Array(void):_Data(NULL), _size(0)
 {
 	if (DEBUG)
 		std::cout << "Array Default constructor called" << std::endl;
@@ -60,6 +60,14 @@ Array<T>& Array<T>::operator=(const Array<T>& obj)
 
 template<typename T>
 T&	Array<T>::operator[](unsigned int index)
+{
+	if (index >= _size)
+		throw std::out_of_range("Index is out of range");
+	return _Data[index];
+}
+
+template<typename T>
+const T&	Array<T>::operator[](unsigned int index) const
 {
 	if (index >= _size)
 		throw std::out_of_range("Index is out of range");
