@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 16:59:18 by rmarzouk          #+#    #+#             */
-/*   Updated: 2025/03/18 14:55:16 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2025/04/18 18:24:57 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ class Array
 
 };
 
+#include "Array.tpp"
 #endif
 
-#include "Array.tpp"
