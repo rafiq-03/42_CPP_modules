@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 17:33:09 by rmarzouk          #+#    #+#             */
-/*   Updated: 2025/02/11 19:00:11 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2025/04/19 20:20:00 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ template <typename T>
 
 class MutantStack : public std::stack<T>
 {
-	private:
-
 	public:
 		MutantStack(void);
 		MutantStack(const MutantStack& obj);
