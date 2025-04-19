@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 16:36:41 by rmarzouk          #+#    #+#             */
-/*   Updated: 2025/03/19 17:18:41 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2025/04/19 11:41:20 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 #include <iostream>
 
-template <typename T>
-void iter(T *array, size_t length, void func(T&)){
+template <typename T, typename FUNC>
+void iter(T *array, size_t length, FUNC func){
     if (!array)
         return ;
     for (size_t i = 0; i < length; i++)
