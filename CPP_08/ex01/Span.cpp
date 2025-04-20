@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 16:06:44 by rmarzouk          #+#    #+#             */
-/*   Updated: 2025/04/20 15:46:37 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2025/04/20 16:42:51 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,7 @@ Span::Span(const Span& obj)
 {
 	if (DEBUG)
 		std::cout << "Span Copy constructor called" << std::endl;
-	_size = obj._size;
-	for (size_t i = 0; i < _data.size(); i++)
-		_data[i] = obj._data[i];
+	*this = obj;
 }
 
 Span& Span::operator=(const Span& obj)
@@ -45,8 +43,7 @@ Span& Span::operator=(const Span& obj)
 	if (this != &obj)
 	{
 		_size = obj._size;
-		for (size_t i = 0; i < _data.size(); i++)
-			_data[i] = obj._data[i];
+		_data = obj._data;
 	}
 	return (*this);
 }
@@ -58,6 +55,11 @@ void	Span::addNumber(int nbr)
 	_data.push_back(nbr);
 }
 
+void	Span::addNumbers(std::vector<int>::iterator begin,std::vector<int>::iterator end){
+	for (std::vector<int>::iterator it = begin; it != end; it++)
+		addNumber(*it);
+}
+
 
 int		Span::shortestSpan(){
 	int tmp;
@@ -65,11 +67,10 @@ int		Span::shortestSpan(){
 	if (_size < 2)
 		throw std::logic_error("invalid size");
 	std::sort(_data.begin(), _data.end());
-	for (size_t i = 0; i < _data.size() - 1; i++)
+	for (size_t i = 1; i < _data.size(); i++)
 	{
-		tmp = _data[i] - _data[i + 1];
-		tmp = tmp > 0 ? tmp : tmp * -1;
-		if (ret > tmp)
+		tmp = _data[i] - _data[i - 1];
+		if (ret >= tmp)
 			ret = tmp;
 	}
 	return (ret);
