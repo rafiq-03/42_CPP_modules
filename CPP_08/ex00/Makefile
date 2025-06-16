@@ -6,11 +6,11 @@
 #    By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/14 16:33:55 by rmarzouk          #+#    #+#              #
-#    Updated: 2025/02/07 16:26:50 by rmarzouk         ###   ########.fr        #
+#    Updated: 2025/06/16 15:29:58 by rmarzouk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FLAGS= -Wall -Wextra -Werror -std=c++98 #-fsanitize=address
+FLAGS= -Wall -Wextra -Werror -std=c++98
 CC = c++
 NAME= find
 HEADER=	easyfind.hpp
