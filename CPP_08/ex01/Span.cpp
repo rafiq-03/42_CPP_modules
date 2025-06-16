@@ -6,7 +6,7 @@
 /*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 16:06:44 by rmarzouk          #+#    #+#             */
-/*   Updated: 2025/04/20 16:42:51 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2025/06/16 16:26:52 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,17 +56,19 @@ void	Span::addNumber(int nbr)
 }
 
 void	Span::addNumbers(std::vector<int>::iterator begin,std::vector<int>::iterator end){
-	for (std::vector<int>::iterator it = begin; it != end; it++)
-		addNumber(*it);
+	size_t newElements = std::distance(begin, end);
+        if (_data.size() + newElements > _size)
+            throw std::length_error("No space left in span buffer");
+        _data.insert(_data.end(), begin, end);
 }
 
 
 int		Span::shortestSpan(){
 	int tmp;
-	int	ret = *(std::max_element(_data.begin(), _data.end()));
 	if (_size < 2)
 		throw std::logic_error("invalid size");
 	std::sort(_data.begin(), _data.end());
+	int	ret = _data[1] - _data[0];
 	for (size_t i = 1; i < _data.size(); i++)
 	{
 		tmp = _data[i] - _data[i - 1];
@@ -79,7 +81,6 @@ int		Span::shortestSpan(){
 int		Span::longestSpan(){
 	if (_size < 2)
 		throw std::logic_error("invalid size");
-	std::sort(_data.begin(), _data.end());
-	return (_data.back() - _data.front());
+	return (*std::max_element(_data.begin(), _data.end()) - *std::min_element(_data.begin(), _data.end()));
 }
 

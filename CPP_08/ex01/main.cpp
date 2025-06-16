@@ -6,11 +6,24 @@
 /*   By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 16:01:46 by rmarzouk          #+#    #+#             */
-/*   Updated: 2025/04/20 16:44:04 by rmarzouk         ###   ########.fr       */
+/*   Updated: 2025/06/16 16:27:09 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
+#include <algorithm>
+
+void test(void){
+    std::vector<int> vec;
+    std::srand(std::time(NULL));
+        for (size_t i = 0; i < 20000; i++)
+            vec.push_back(std::rand());
+    Span sp(200000);
+    sp.addNumbers(vec.begin(), vec.end());
+    std::cout << "shortest span: " << sp.shortestSpan() << std::endl;
+    std::cout << "longest  span: " << sp.longestSpan() << std::endl;
+}
+
 
 int main()
 {
