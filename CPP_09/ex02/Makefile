@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+         #
+#    By: rafiq <rmarzouk@student.1337.com>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/20 12:42:02 by rmarzouk          #+#    #+#              #
-#    Updated: 2025/08/15 18:02:58 by rmarzouk         ###   ########.fr        #
+#    Updated: 2025/08/20 13:47:45 by rafiq            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FLAGS= -Wall -Wextra -Werror -std=c++98
+FLAGS= -Wall -Wextra -Werror -std=c++98 -fsanitize=address
 CC = c++
 NAME= PmergeMe
 HEADER= PmergeMe.hpp
