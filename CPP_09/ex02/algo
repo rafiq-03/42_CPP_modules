@@ -1,0 +1,13 @@
+// make pairs;
+	// swap the biggest ones with smallest ones [small, big];
+	// make recursion until you can't make pairs;
+	// let unpaired number alone
+	// make main chain like [s1, b1, b2, ..... bn ] and pend chain what is left for smalls [s2, s3, ..... sn]
+	// now we have every sn < bn so we should insert every sn from pend chain in [s1, b1, .... bn]. don't forget to use order based on jacobsthal 
+	
+	// how to check if we can't make another pair ?
+	// how remove a specific element (pair) from a place and insert it in another place?
+	// pend chain
+	// main chain
+	// how to keep track pairs based on level?
+	// what is the base condition for this methode?

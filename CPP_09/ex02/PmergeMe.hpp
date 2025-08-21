@@ -23,7 +23,7 @@ class PmergeMe
 		void	fordJohnsonSort(std::deque<int> &Chain);
 		void	mergeSort(std::deque<int> &arr, size_t lvl);
 		void	mergeInsert(std::deque<int> &arr,size_t step);
-		int  	binarySearch(std::deque<int> &chain, int nb , size_t length );
+		int  	binarySearch(std::deque<int> &chain, int nb , size_t length, int start, int end);
 		void	isSorted(std::deque<int> &Chain);
 };
 int pow(int nb, int pow);

@@ -81,57 +81,41 @@ int pow(int nb, int pow){
 	return res;
 }
 
-int PmergeMe::binarySearch(std::deque<int> &chain, int nb, size_t length )
+int PmergeMe::binarySearch(std::deque<int> &chain, int nb, size_t length, int start, int end)
 {
-	if (chain.size() == 0)
-		return 0;
-	if (chain.size() <= length)
+	if (start >= end || chain.size() == 0)
+		return start;
+	
+	// Binary search on groups of size 'length' within bounds [start, end)
+	int left = start / length;
+	int right = (end - 1) / length;
+	int result = end;
+	
+	while (left <= right)
 	{
 		count++;
-		if (chain[chain.size() - 1] > nb) 
-			return 0;
-		return chain.size();
-	}
-	int left = 0;
-   	int right = ((chain.size()) / length) - 1;
-   	int f = 0, index = 0;
-	int middle ;
-	while (left < right) 
-	{
-		count++;
-		middle = (right + left) / 2;
-		int idx = ((middle + 1) * length) - 1;
-		if (nb < chain[idx]) 
+		int middle = left + (right - left) / 2;
+		int idx = (middle + 1) * length - 1;
+		
+		// Check bounds within the search range
+		if (idx >= end)
+			idx = end - 1;
+		if (idx < start)
+			idx = start;
+		
+		if (chain[idx] >= nb)
 		{
-			f = 0;
+			result = middle * length;
+			if (result < start)
+				result = start;
 			right = middle - 1;
 		}
-		else 
+		else
 		{
-			f = 1;
 			left = middle + 1;
 		}
 	}
-	index = left;
-	count++;
-	if (f == 1)
-	{
-		right = ((right + 1) * length) - 1;
-		
-		if (chain[right] < nb) 
-		{
-			if (chain.size() % length == 0)
-				index ++;
-			else
-				return chain.size();
-		}
-	}
-	else
-	{
-		if (chain[index] < nb) 
-			return (index + 1) * length;
-	}
-   return index * length;
+	return result;
 }
 
 void	PmergeMe::mergeSort(std::deque<int> &arr,size_t lvl){
@@ -174,7 +158,7 @@ void	PmergeMe::mergeInsert(std::deque<int> &arr,size_t step){
 	prnt(pend, step, "pend", 1);
 	// should implement jacobsthal here and search from begining to where the pair existe
 	for (i = 0; i < pend.size(); i += step / 2) {
-		size_t idx = binarySearch(main, pend[i + step / 2 - 1], step / 2);// we have a problem here
+		size_t idx = binarySearch(main, pend[i + step / 2 - 1], step / 2, 0, main.size());// we have a problem here
 		main.insert(main.begin() + idx, pend.begin() + i, pend.begin() + i + step / 2);
    	}
 
