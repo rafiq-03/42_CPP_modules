@@ -67,20 +67,48 @@ int pow(int nb, int pow){
 	return res;
 }
 
-void	PmergeMe::insertion(std::deque<int> &chain, size_t step, size_t ref, int nb){
-	size_t begin = step - 1;
-	size_t end = ref;
-
-	// implement binary search
-	// try to insert a range of element from pend to this position
-	while (begin < end){
-		size_t middle = (end - begin) / 2;
-		if (chain[middle] > nb)// comp
-			end = middle;
-		else if (chain[middle] > nb)
-			begin = middle;
-	}
-	
+void    PmergeMe::insertion(std::deque<int> &chain, size_t step, size_t ref, int nb){
+   // Step-aligned binary search for Ford-Johnson algorithm
+   size_t left = 0;
+   size_t right = ref;
+  
+   // If step is 1, chain is fully sorted - use regular binary search
+   if (step <= 1) {
+       while (left < right) {
+           size_t middle = left + (right - left) / 2;
+           if (chain[middle] > nb) {
+               right = middle;
+           } else {
+               left = middle + 1;
+           }
+       }
+   } else {
+       // Step-aligned binary search: only compare with representative elements
+       while (left < right) {
+           size_t middle_pos = left + (right - left) / 2;
+          
+           // Align middle to step boundaries (representative positions)
+           size_t aligned_pos = ((middle_pos / step) * step) + (step - 1);
+           if (aligned_pos >= chain.size()) {
+               aligned_pos = chain.size() - 1;
+           }
+          
+           if (chain[aligned_pos] > nb) {
+               right = middle_pos;
+           } else {
+               left = middle_pos + 1;
+           }
+       }
+      
+       // Adjust final position to step boundary
+       left = ((left / step) * step) + (step - 1);
+       if (left >= chain.size()) {
+           left = chain.size();
+       }
+   }
+  
+   // Insert the element at the found position
+   chain.insert(chain.begin() + left, nb);
 }
 
 
@@ -89,14 +117,14 @@ void	PmergeMe::mergeSort(std::deque<int> &arr,size_t lvl){
 	if (step > arr.size()){
 		return;
 	}
-	std::cout << "level : " << lvl  << " step = " << step << std::endl << "          ";
+	// std::cout << "level : " << lvl  << " step = " << step << std::endl << "          ";
 	for (size_t i = 0; i < arr.size(); i += step)// loop over array and swap bigger with smaller numbers
 	{
 		if (i + step > arr.size()){
-			std::cout << "\nleft elemnts : [ ";
-			for (size_t j = i; j < arr.size(); j++)
-				std::cout << arr[j]  << " ";
-			std::cout << "]" << std::endl;
+			// std::cout << "\nleft elemnts : [ ";
+			// for (size_t j = i; j < arr.size(); j++)
+			// 	std::cout << arr[j]  << " ";
+			// std::cout << "]" << std::endl;
 			break;
 		}
 		// std::cout << " * [ ";
@@ -110,42 +138,82 @@ void	PmergeMe::mergeSort(std::deque<int> &arr,size_t lvl){
 		if (arr[i + step / 2 - 1] > arr[i + step -1])
 			swapPairs(arr, step / 2, arr.begin() + i);
 
-		for (size_t j = i; j < i + step; j++){
-			// if (j == i + step / 2)
-			// 	std::cout << ".";
-			std::cout << (j < arr.size() ? arr[j] : -1 ) << " ";
-		}
+		// for (size_t j = i; j < i + step; j++){
+		// 	if (j == i + step / 2)
+		// 		std::cout << ". ";
+		// 	std::cout << (j < arr.size() ? arr[j] : -1 ) << " ";
+		// }
 		// std::cout << "| " ;
 	}
-
 	std::cout << std::endl;
+
+	mergeSort(arr, lvl + 1);
+
+
 	// create main chain and pend chain;
+
 	std::deque<int> main;
 	std::deque<int> pend;
-	size_t i;
-	for (i = 0; i < arr.size(); i += step){
+	size_t i = 0;
+
+	// insert b1 and a1 in main chain
+	main.insert(pend.end(), arr.begin() + i, arr.begin() + i + step);
+	
+	// std::cout << "befor : i = " << i << std::endl;
+	for (i = step; i < arr.size(); i += step){
 		if (i + step / 2 <= arr.size())
 			pend.insert(pend.end(), arr.begin() + i, arr.begin() + i + step / 2);
 		if (i + step <= arr.size())
 			main.insert(main.end(), arr.begin() + i + step / 2, arr.begin() + i + step);
+		else
+			break;
 	}
-	for (size_t j = i; j < arr.size(); j++)
+	std::cout << "\n\nlevel : " << lvl  << " step = " << step << std::endl;
+	std::cout << "arr  : " ;
+	for (size_t i = 0; i < arr.size(); i++){
+		if (i  % (step / 2) == 0)
+			std::cout << "| "; 
+		std::cout << arr[i] << " " ;
+	}
+	std::cout << "| \n" ;
+	std::cout << "Main : " ;
+	for (size_t i = 0; i < main.size(); i++){
+		if (i  % (step / 2) == 0)
+			std::cout << "| ";
+		std::cout << main[i] << " " ;
+	}
+	std::cout << "| \n" ;
+	std::cout << "Pend : " ;
+	for (size_t i = 0; i < pend.size(); i++){
+		if (i  % (step / 2) == 0)
+			std::cout << "| ";
+		std::cout << pend[i] << " " ;
+	}
+	std::cout << "| \n" ;
+
+	// insert all elements from pend to main
+	// for (size_t i = 0; i < pend.size(); i += step) {
+    //    insertion(main, step / 2, main.size(), pend[i + step - 1]);
+   	// }
+
+	// std::cout << "after : i = " << i << std::endl;
+	for (size_t j = i; j < arr.size(); j++){
+		// std::cout << "left : " << arr[j] << std::endl;
 		main.push_back(arr[j]);
+	}
 
-	// std::cout << main.size() << " main : "  ;
-	// for (size_t i = 0; i < main.size(); i++)
-	// 	std::cout << "   " <<  main[i]  << " ";
-	// std::cout << std::endl;
-	// std::cout << pend.size() << " pend : " ;
-	// for (size_t i = 0; i < pend.size(); i++)
-	// 	std::cout <<  pend[i]  << "    ";
-	// std::cout << "\n"<< std::endl;
-	
-	// binary search and insertion of numbers from pend to main;
 
-	arr = main;
-	mergeSort(arr, lvl + 1);
+	std::cout << "\nafter insertion:" << std::endl;
+	std::cout << "Main : " ;
+	for (size_t i = 0; i < main.size(); i++){
+		if (i  % (step / 2) == 0)
+			std::cout << "| ";
+		std::cout << main[i] << " " ;
+	}
+
+	// arr = main;
 }
+
 
 	// how to check if we can't make another pair ?
 	// how remove a specific element (pair) from a place and insert it in another place?
@@ -154,14 +222,18 @@ void	PmergeMe::mergeSort(std::deque<int> &arr,size_t lvl){
 	// how to keep track pairs based on level?
 	// what is the base condition for this methode?
 void	PmergeMe::fordJohnsonSort(std::deque<int> &Chain, std::deque<int>::iterator bgn){
-	// make pairs;
-	// swap the biggest ones with smallest ones [small, big];
-	// make recursion until you can't make pairs;
-	// let unpaired number alone
-	// make main chain like [s1, b1, b2, ..... bn ] and pend chain what is left for smalls [s2, s3, ..... sn]
-	// now we have every sn < bn so we should insert every sn from pend chain in [s1, b1, .... bn]. don't forget to use order based on jacobsthal order
 	static size_t level = 1;
 	std::cout << "size : " << Chain.size() << std::endl;
 	mergeSort(Chain,level);
+	std::cout << "after : [ ";
+	for (size_t i = 0; i < Chain.size(); i++) {
+       std::cout << Chain[i] << " " ;
+	}
+	std::cout << " ] \n";
 	(void)bgn;
+}
+
+
+int		PmergeMe::jacobsthal(int nb){
+	return round((pow(2, nb + 1) + pow(-1, nb)) / 3); 
 }
