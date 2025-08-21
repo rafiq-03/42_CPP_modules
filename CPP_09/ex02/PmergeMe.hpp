@@ -20,10 +20,11 @@ class PmergeMe
 		int		jacobsthal(int nb);
 		static int count;
 		void	swapPairs(std::deque<int> &chain, size_t step, std::deque<int>::iterator bgn);
-		void	fordJohnsonSort(std::deque<int> &Chain, std::deque<int>::iterator bgn);
+		void	fordJohnsonSort(std::deque<int> &Chain);
 		void	mergeSort(std::deque<int> &arr, size_t lvl);
-		void	insertion(std::deque<int> &chain, size_t step, size_t ref, int nb);
-		int  	chkek(std::deque<int> &chain, int nb , size_t length );
+		void	mergeInsert(std::deque<int> &arr,size_t step);
+		int  	binarySearch(std::deque<int> &chain, int nb , size_t length );
+		void	isSorted(std::deque<int> &Chain);
 };
 int pow(int nb, int pow);
 #endif
