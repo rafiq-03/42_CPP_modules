@@ -1,17 +1,13 @@
 #include "PmergeMe.hpp"
-int PmergeMe::count = 0;
 
-void prnt(std::deque<int> arr, size_t step, std::string name, int flag){
-	std::cout << name << " : ";
-	for (size_t i = 0; i < arr.size(); i++){
-		if ((i + 1) % (step / 2) == 0 && flag && step != 2){
-			std::cout << "\033[34m" << arr[i] <<"\033[0m | ";
-		}else{
-			std::cout << arr[i] << " " ;
-		}
-	}
-	std::cout << "\n" <<std::endl;
-}
+int PmergeMe::comparison_count = 0;
+
+struct ComparisonCounter {
+    bool operator()(int a, int b) {
+        PmergeMe::comparison_count++;
+        return a < b;
+    }
+};
 
 PmergeMe::PmergeMe(void)
 {
@@ -22,21 +18,14 @@ PmergeMe::PmergeMe(int ac, char **av)
 {
 	if (DEBUG)
 		std::cout << "PmergeMe parametrized constructor called" << std::endl;
-	std::cout << "before:  ";
 	for (int i = 1; i < ac; i++)
 	{
 		int nb = atoi(av[i]);
 		if (find(dequeChain.begin(), dequeChain.end(), nb) == dequeChain.end()){
 			dequeChain.push_back(nb);
+			vectorChain.push_back(nb);
 		}
 	}
-	std::cout << std::endl;
-	for (size_t i = 0; i < dequeChain.size(); i++)
-	{
-		std::cout << dequeChain[i] << " " ;
-	}
-	std::cout << "\n"<<std::endl;
-	fordJohnsonSort(dequeChain);
 }
 
 PmergeMe::~PmergeMe(void)
@@ -45,11 +34,10 @@ PmergeMe::~PmergeMe(void)
 		std::cout << "PmergeMe Destructor called" << std::endl;
 }
 
-PmergeMe::PmergeMe(const PmergeMe& obj)
+PmergeMe::PmergeMe(const PmergeMe& obj): dequeChain(obj.dequeChain), vectorChain(obj.vectorChain)
 {
 	if (DEBUG)
 		std::cout << "PmergeMe Copy constructor called" << std::endl;
-	(void)obj;
 }
 
 PmergeMe& PmergeMe::operator=(const PmergeMe& obj)
@@ -57,125 +45,15 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& obj)
 	if (DEBUG)
 		std::cout << "PmergeMe Copy assignment operator called" << std::endl;
 	if (this != &obj){
+		dequeChain = obj.dequeChain;
+		vectorChain = obj.vectorChain;
 	}
 	return (*this);
 }
 
-void	PmergeMe::swapPairs(std::deque<int> &chain, size_t step, std::deque<int>::iterator bgn){
-	count++;
-	for (std::deque<int>::iterator it = bgn; it < bgn + step; it++)
-	{
-		int tmp = *it;
-		*it = *(it + step);
-		*(it + step) = tmp;
-	}
-	static_cast<void>(chain);
-}
 
-int pow(int nb, int pow){
-	int res = 1;
-	if (!pow)
-		return 1;
-	while (pow--)
-		res *= nb;
-	return res;
-}
+/* ---------------------------------------------------- */
 
-int PmergeMe::binarySearch(std::deque<int> &chain, int nb, size_t length, int start, int end)
-{
-	if (start >= end || chain.size() == 0)
-		return start;
-	int left = start / length;
-	int right = (end - 1) / length;
-	int result = end;
-	
-	while (left <= right)
-	{
-		count++;
-		int middle = left + (right - left) / 2;
-		int idx = (middle + 1) * length - 1;
-		if (idx >= end)
-			idx = end - 1;
-		if (idx < start)
-			idx = start;
-		
-		if (chain[idx] >= nb)
-		{
-			result = middle * length;
-			if (result < start)
-				result = start;
-			right = middle - 1;
-		}
-		else
-		{
-			left = middle + 1;
-		}
-	}
-	return result;
-}
-
-void	PmergeMe::mergeSort(std::deque<int> &arr,size_t lvl){
-	size_t step = pow(2, lvl);
-	if (step >= arr.size())
-		return;
-	for (size_t i = 0; i < arr.size(); i += step)
-	{
-		if (i + step > arr.size())
-			break;
-		if (arr[i + step / 2 - 1] > arr[i + step -1])
-			swapPairs(arr, step / 2, arr.begin() + i);
-	}
-	mergeSort(arr, lvl + 1);
-	std::cout << "level: " << lvl << " step: " << step << std::endl;
-	mergeInsert(arr, step);
-}
-
-void	PmergeMe::mergeInsert(std::deque<int> &arr,size_t step){
-	std::deque<int> main;
-	std::deque<int> pend;
-	size_t i = 0;
-
-	main.insert(main.end(), arr.begin() + i, arr.begin() + i + step);
-	for (i = step; i < arr.size(); i += step){
-		if (i + step / 2 <= arr.size())
-			pend.insert(pend.end(), arr.begin() + i, arr.begin() + i + step / 2);
-		if (i + step <= arr.size())
-			main.insert(main.end(), arr.begin() + i + step / 2, arr.begin() + i + step);
-		else
-			break;
-	}
-	prnt(arr, step, "arr", 1);
-	prnt(main, step, "main", 1);
-	prnt(pend, step, "pend", 1);
-	int num_pairs = pend.size() / (step / 2);
-	std::vector<bool> inserted(num_pairs, false);
-	int total_inserted = 0;
-	
-	int j = 2;
-	int prev_jacob = 0;
-	
-	while (prev_jacob < num_pairs) {
-		int curr_jacob = jacobsthal(j);
-		if (curr_jacob > num_pairs)
-			curr_jacob = num_pairs;	
-		for (int pair_idx = curr_jacob - 1; pair_idx >= prev_jacob; pair_idx--) {
-			if (pair_idx >= num_pairs || inserted[pair_idx]) continue;
-			int pend_pos = pair_idx * (step / 2);
-			int search_limit = (pair_idx + 1) * step + total_inserted * (step / 2);
-			if (search_limit > static_cast<int>(main.size())) 
-				search_limit = main.size();
-			size_t insert_idx = binarySearch(main, pend[pend_pos + step / 2 - 1], step / 2, 0, search_limit);
-			main.insert(main.begin() + insert_idx, pend.begin() + pend_pos, pend.begin() + pend_pos + step / 2);
-			inserted[pair_idx] = true;
-			total_inserted++;
-		}
-		prev_jacob = curr_jacob;
-		j++;
-	}	
-	for (size_t j = ((arr.size() / (step / 2)) * (step / 2)) ; j < arr.size(); j++)
-		main.push_back(arr[j]);
-	arr = main;
-}
 
 void	PmergeMe::isSorted(std::deque<int> &Chain){
 	for (size_t i = 1; i < Chain.size(); i++)
@@ -185,17 +63,181 @@ void	PmergeMe::isSorted(std::deque<int> &Chain){
 		else
 			std::cout << Chain[i - 1]<< " " ;
 	}
-	std::cout << Chain.back() << std::endl;
+	std::cout << Chain[Chain.size() - 1] << std::endl;
+}
+
+void	PmergeMe::insert(std::deque<int> &main, std::deque<int> &pend, std::vector<int> &pairs){
+	if (!pend.empty()) {
+		if (pairs[0] != -1) {
+			std::deque<int>::iterator pair_pos = std::find(main.begin(), main.end(), pairs[0]);
+			std::deque<int>::iterator idx = std::upper_bound(main.begin(), pair_pos, pend[0], ComparisonCounter());
+			main.insert(idx, pend[0]);
+		} else {
+			std::deque<int>::iterator idx = std::upper_bound(main.begin(), main.end(), pend[0], ComparisonCounter());
+			main.insert(idx, pend[0]);
+		}
+	}
+
+	std::vector<bool> inserted(pend.size(), false);
+	if (!pend.empty()) inserted[0] = true;
+
+	int jacobsthal_idx = 1;
+	size_t inserted_count = pend.empty() ? 0 : 1;
+
+	while (inserted_count < pend.size()) {
+		int jacobsthal_num = jacobsthal(jacobsthal_idx);
+		
+		int prev_jacobsthal = (jacobsthal_idx > 1) ? jacobsthal(jacobsthal_idx - 1) : 0;
+		
+		for (int i = std::min(jacobsthal_num, (int)pend.size() - 1); i > prev_jacobsthal && i < (int)pend.size(); i--) {
+			if (!inserted[i]) {
+				if (pairs[i] != -1) {
+					std::deque<int>::iterator pair_pos = std::find(main.begin(), main.end(), pairs[i]);
+					std::deque<int>::iterator idx = std::upper_bound(main.begin(), pair_pos, pend[i], ComparisonCounter());
+					main.insert(idx, pend[i]);
+				} else {
+					std::deque<int>::iterator idx = std::upper_bound(main.begin(), main.end(), pend[i], ComparisonCounter());
+					main.insert(idx, pend[i]);
+				}
+				inserted[i] = true;
+				inserted_count++;
+			}
+		}
+		jacobsthal_idx++;
+	}
+}
+
+void	PmergeMe::mergeSort(std::deque<int> &arr){
+	if (arr.size() < 2)
+		return;
+	bool is_odd = arr.size() % 2 == 1;
+	std::deque<int> main;
+	std::deque<int> pend;
+	std::vector<int> pairs;
+
+	for (size_t i = 0; i + 2 < arr.size(); i += 2)
+	{
+		int larger = std::max(arr[i], arr[i + 1]);
+		int smaller = std::min(arr[i], arr[i + 1]);
+		comparison_count++;
+		main.push_back(larger);
+		pend.push_back(smaller);
+		pairs.push_back(larger);
+	}
+	if (!is_odd){
+		int larger = std::max(arr[arr.size() - 2], arr[arr.size() - 1]);
+		int smaller = std::min(arr[arr.size() - 2], arr[arr.size() - 1]);
+
+		comparison_count++;
+		main.push_back(larger);
+		pend.push_back(smaller);
+		pairs.push_back(larger);
+	}
+	else {
+		pend.push_back(arr[arr.size() - 1]);
+		pairs.push_back(-1);
+	}
+	
+	mergeSort(main);
+	insert(main, pend, pairs);
+	arr = main;
 }
 
 
-void	PmergeMe::fordJohnsonSort(std::deque<int> &Chain){
-	static size_t level = 1;
-	std::cout << "size : " << Chain.size() << std::endl;
-	mergeSort(Chain,level);
-	isSorted(Chain);
+void	PmergeMe::isSorted(std::vector<int> &Chain){
+	for (size_t i = 1; i < Chain.size(); i++)
+	{
+		if (Chain[i] < Chain[i - 1])
+			std::cout << "\033[33m" << Chain[i - 1] << " \033[0m";
+		else
+			std::cout << Chain[i - 1]<< " " ;
+	}
+	std::cout << Chain[Chain.size() - 1] << std::endl;
 }
 
+void	PmergeMe::insert(std::vector<int> &main, std::vector<int> &pend, std::vector<int> &pairs){
+	if (!pend.empty()) {
+		if (pairs[0] != -1) {
+			std::vector<int>::iterator pair_pos = std::find(main.begin(), main.end(), pairs[0]);
+			std::vector<int>::iterator idx = std::upper_bound(main.begin(), pair_pos, pend[0], ComparisonCounter());
+			main.insert(idx, pend[0]);
+		} else {
+			std::vector<int>::iterator idx = std::upper_bound(main.begin(), main.end(), pend[0], ComparisonCounter());
+			main.insert(idx, pend[0]);
+		}
+	}
+
+	std::vector<bool> inserted(pend.size(), false);
+	if (!pend.empty()) inserted[0] = true;
+
+	int jacobsthal_idx = 1;
+	size_t inserted_count = pend.empty() ? 0 : 1;
+
+	while (inserted_count < pend.size()) {
+		int jacobsthal_num = jacobsthal(jacobsthal_idx);
+		
+		int prev_jacobsthal = (jacobsthal_idx > 1) ? jacobsthal(jacobsthal_idx - 1) : 0;
+		
+		for (int i = std::min(jacobsthal_num, (int)pend.size() - 1); i > prev_jacobsthal && i < (int)pend.size(); i--) {
+			if (!inserted[i]) {
+				if (pairs[i] != -1) {
+					std::vector<int>::iterator pair_pos = std::find(main.begin(), main.end(), pairs[i]);
+					std::vector<int>::iterator idx = std::upper_bound(main.begin(), pair_pos, pend[i], ComparisonCounter());
+					main.insert(idx, pend[i]);
+				} else {
+					std::vector<int>::iterator idx = std::upper_bound(main.begin(), main.end(), pend[i], ComparisonCounter());
+					main.insert(idx, pend[i]);
+				}
+				inserted[i] = true;
+				inserted_count++;
+			}
+		}
+		jacobsthal_idx++;
+	}
+}
+
+void	PmergeMe::mergeSort(std::vector<int> &arr){
+	if (arr.size() < 2)
+		return;
+	bool is_odd = arr.size() % 2 == 1;
+	std::vector<int> main;
+	std::vector<int> pend;
+	std::vector<int> pairs;
+
+	for (size_t i = 0; i + 2 < arr.size(); i += 2)
+	{
+		int larger = std::max(arr[i], arr[i + 1]);
+		int smaller = std::min(arr[i], arr[i + 1]);
+		comparison_count++;
+		main.push_back(larger);
+		pend.push_back(smaller);
+		pairs.push_back(larger);
+	}
+	if (!is_odd){
+		int larger = std::max(arr[arr.size() - 2], arr[arr.size() - 1]);
+		int smaller = std::min(arr[arr.size() - 2], arr[arr.size() - 1]);
+
+		comparison_count++;
+		main.push_back(larger);
+		pend.push_back(smaller);
+		pairs.push_back(larger);
+	}
+	else {
+		pend.push_back(arr[arr.size() - 1]);
+		pairs.push_back(-1);
+	}
+	
+	mergeSort(main);
+	insert(main, pend, pairs);
+	arr = main;
+}
+
+void	PmergeMe::fordJohnsonSort(){
+	mergeSort(dequeChain);
+	isSorted(dequeChain);
+	mergeSort(vectorChain);
+	// isSorted(dequeChain);
+}
 
 int		PmergeMe::jacobsthal(int n) {
     if (n == 0) return 0;

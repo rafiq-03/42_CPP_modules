@@ -10,21 +10,32 @@
 
 class PmergeMe
 {
-	public:
+	private:
 		std::deque<int>		dequeChain;
+		std::deque<int>		vectorChain;
+
+	public:
+		static int comparison_count;
 		PmergeMe(void);
 		PmergeMe(int ac, char **av);
 		PmergeMe(const PmergeMe& obj);
-		PmergeMe&	operator=(const PmergeMe& obj); 
+		PmergeMe&	operator=(const PmergeMe& obj);
 		~PmergeMe();
+	
 		int		jacobsthal(int nb);
-		static int count;
-		void	swapPairs(std::deque<int> &chain, size_t step, std::deque<int>::iterator bgn);
-		void	fordJohnsonSort(std::deque<int> &Chain);
-		void	mergeSort(std::deque<int> &arr, size_t lvl);
-		void	mergeInsert(std::deque<int> &arr,size_t step);
-		int  	binarySearch(std::deque<int> &chain, int nb , size_t length, int start, int end);
+		void	fordJohnsonSort();
+	
+		/* -- [ deque container : ] --*/
+
+		void	insert(std::deque<int> &main, std::deque<int> &pend, std::vector<int> &pairs);
 		void	isSorted(std::deque<int> &Chain);
+		void	mergeSort(std::deque<int> &arr);
+		
+		/* -- [ vector container : ] --*/
+		
+		void	insert(std::vector<int> &main, std::vector<int> &pend, std::vector<int> &pairs);
+		void	isSorted(std::vector<int> &Chain);
+		void	mergeSort(std::vector<int> &arr);
 };
-int pow(int nb, int pow);
+
 #endif
