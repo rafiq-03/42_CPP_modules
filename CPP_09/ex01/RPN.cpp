@@ -1,24 +1,16 @@
 #include "RPN.hpp"
 
-RPN::RPN(void)
-{
-	// std::cout << "RPN Default constructor called" << std::endl;
-}
+RPN::RPN(void){}
 
-RPN::~RPN(void)
-{
-	// std::cout << "RPN Destructor called" << std::endl;
-}
+RPN::~RPN(void){}
 
 RPN::RPN(const RPN& obj)
 {
-	// std::cout << "RPN Copy constructor called" << std::endl;
 	this->_data = obj._data;
 }
 
 RPN& RPN::operator=(const RPN& obj)
 {
-	// std::cout << "RPN Copy assignment operator called" << std::endl;
 	if (this != &obj)
 		this->_data = obj._data;
 	return (*this);
