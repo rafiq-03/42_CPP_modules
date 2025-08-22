@@ -156,17 +156,50 @@ void	PmergeMe::mergeInsert(std::deque<int> &arr,size_t step){
 	prnt(arr, step, "arr", 1);
 	prnt(main, step, "main", 1);
 	prnt(pend, step, "pend", 1);
+	int counter = 0;
 	// should implement jacobsthal here and search from begining to where the pair existe
-	for (i = 0; i < pend.size(); i += step / 2) {
-		size_t idx = binarySearch(main, pend[i + step / 2 - 1], step / 2, 0, main.size());// we have a problem here
-		main.insert(main.begin() + idx, pend.begin() + i, pend.begin() + i + step / 2);
-   	}
+	// for (i = 0; i < pend.size(); i += step / 2) {
+	// 	counter += step / 2;// track the pair of pend element
 
-	// push left elements int main chain
+	// 	// prnt(main, step, "main", 1);
+	// 	// std::cout << "* " << pend[i + step / 2 - 1] << ", " << main[ i + step + counter - 1] << std::endl;
+	// 	size_t idx = 0;
+	// 	if (i + step / 2 + counter >= main.size())
+	// 		idx = binarySearch(main, pend[i + step / 2 - 1], step / 2, 0, main.size());
+	// 	else
+	// 		idx = binarySearch(main, pend[i + step / 2 - 1], step / 2, 0, i + step / 2 + counter);
+	// 	main.insert(main.begin() + idx, pend.begin() + i, pend.begin() + i + step / 2);
+   	// }
+	int j = 3;
+	int curr_jacob_idx = jacobsthal(j) - 2;// index
+	int prev_jacob_idx = jacobsthal(j - 1) - 2;
+	// std::cout << "curr "<< curr_jacob_idx << std::endl;
+	// std::cout << "prev "<< prev_jacob_idx << std::endl;
+	while (curr_jacob_idx <= static_cast<int>(pend.size())){
+		for(int left = curr_jacob_idx; left > prev_jacob_idx; left--){
+			// std::cout << "** back " << left << std::endl;
+			std::cout << "* " << pend[left + step / 2 - 1] << ", " << main[ left + step + counter - 1] << std::endl;
+			counter += step / 2;
+			size_t idx = 0;
+			if (left + step / 2 + counter >= main.size())
+				idx = binarySearch(main, pend[left + step / 2 - 1], step / 2, 0, main.size());
+			else
+				idx = binarySearch(main, pend[left + step / 2 - 1], step / 2, 0, left + step / 2 + counter);
+			main.insert(main.begin() + idx, pend.begin() + left, pend.begin() + left + step / 2);
+		}
+		prev_jacob_idx = curr_jacob_idx;
+		curr_jacob_idx = jacobsthal(++j) - 2;
+		// std::cout << "curr "<< curr_jacob_idx << std::endl;
+		// std::cout << "prev "<< prev_jacob_idx << std::endl;
+	}
+
+	// instead of looping over pend we must search for jacobsthal elements b3 pend[1] =, b5 pend[3], b11 pend[9]
+	
 	for (size_t j = ((arr.size() / (step / 2)) * (step / 2)) ; j < arr.size(); j++)
 		main.push_back(arr[j]);
+
 	// assign main to our original array
-	prnt(main, step, "=> main", 1);
+	// prnt(main, step, "=> main", 1);
 	arr = main;
 }
 
@@ -190,6 +223,19 @@ void	PmergeMe::fordJohnsonSort(std::deque<int> &Chain){
 }
 
 
-int		PmergeMe::jacobsthal(int nb){
-	return round((pow(2, nb + 1) + pow(-1, nb)) / 3); 
+int		PmergeMe::jacobsthal(int n) {
+    if (n == 0) return 0;
+    if (n == 1) return 1;
+
+    int prev2 = 0; // J(0)
+    int prev1 = 1; // J(1)
+    int current = 0;
+
+    for (int i = 2; i <= n; ++i) {
+        current = prev1 + 2 * prev2; // J(n) = J(n-1) + 2 * J(n-2)
+        prev2 = prev1;
+        prev1 = current;
+    }
+
+    return current;
 }
