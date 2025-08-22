@@ -156,50 +156,52 @@ void	PmergeMe::mergeInsert(std::deque<int> &arr,size_t step){
 	prnt(arr, step, "arr", 1);
 	prnt(main, step, "main", 1);
 	prnt(pend, step, "pend", 1);
-	int counter = 0;
-	// should implement jacobsthal here and search from begining to where the pair existe
-	// for (i = 0; i < pend.size(); i += step / 2) {
-	// 	counter += step / 2;// track the pair of pend element
-
-	// 	// prnt(main, step, "main", 1);
-	// 	// std::cout << "* " << pend[i + step / 2 - 1] << ", " << main[ i + step + counter - 1] << std::endl;
-	// 	size_t idx = 0;
-	// 	if (i + step / 2 + counter >= main.size())
-	// 		idx = binarySearch(main, pend[i + step / 2 - 1], step / 2, 0, main.size());
-	// 	else
-	// 		idx = binarySearch(main, pend[i + step / 2 - 1], step / 2, 0, i + step / 2 + counter);
-	// 	main.insert(main.begin() + idx, pend.begin() + i, pend.begin() + i + step / 2);
-   	// }
-	int j = 3;
-	int curr_jacob_idx = (jacobsthal(j) - 2) * step / 2;// index
-	int prev_jacob_idx = jacobsthal(j - 1) - 2;
-	// std::cout << "curr "<< curr_jacob_idx << std::endl;
-	// std::cout << "prev "<< prev_jacob_idx << std::endl;
-	while (curr_jacob_idx < static_cast<int>(pend.size())){
-		for(int left = curr_jacob_idx; left > prev_jacob_idx; left -= step / 2){
-			// std::cout << "** back " << left << std::endl;
-			std::cout << "* " << pend[left + step / 2 - 1] << ", " << main[ left + step / 2 + counter + step / 2 - 1] << std::endl;
-			counter += step / 2;
-			size_t idx = 0;
-			if (left + step / 2 + counter >= main.size())
-				idx = binarySearch(main, pend[left + step / 2 - 1], step / 2, 0, main.size());
-			else
-				idx = binarySearch(main, pend[left + step / 2 - 1], step / 2, 0, left + step / 2 + counter);
-			main.insert(main.begin() + idx, pend.begin() + left, pend.begin() + left + step / 2);
+	// Insert pending elements using Jacobsthal sequence
+	int num_pairs = pend.size() / (step / 2);  // Number of pairs in pend
+	std::vector<bool> inserted(num_pairs, false);  // Track inserted pairs
+	int total_inserted = 0;
+	
+	// Start with Jacobsthal sequence: J(2)=1, J(3)=3, J(4)=5, J(5)=11, ...
+	int j = 2;
+	int prev_jacob = 0;  // Start from 0 (before first Jacobsthal number)
+	
+	std::cout << "Number of pairs to insert: " << num_pairs << std::endl;
+	
+	while (prev_jacob < num_pairs) {
+		int curr_jacob = jacobsthal(j);
+		if (curr_jacob > num_pairs) curr_jacob = num_pairs;
+		
+		std::cout << "Jacobsthal(" << j << ") = " << jacobsthal(j) << ", range: " << prev_jacob << " to " << curr_jacob << std::endl;
+		
+		// Insert elements from curr_jacob down to prev_jacob+1 (in reverse order)
+		for (int pair_idx = curr_jacob - 1; pair_idx >= prev_jacob; pair_idx--) {
+			if (pair_idx >= num_pairs || inserted[pair_idx]) continue;
+			
+			// Calculate position in pend array (convert pair index to byte position)
+			int pend_pos = pair_idx * (step / 2);
+			
+			// Calculate search limit: where this pair's partner is + all previously inserted elements
+			int search_limit = (pair_idx + 1) * step + total_inserted * (step / 2);
+			if (search_limit > static_cast<int>(main.size())) 
+				search_limit = main.size();
+				
+			std::cout << "Inserting pair " << pair_idx << " (pend[" << pend_pos << "-" << (pend_pos + step/2 - 1) 
+					  << "]) with search limit " << search_limit << std::endl;
+			
+			// Find insertion point
+			size_t insert_idx = binarySearch(main, pend[pend_pos + step / 2 - 1], step / 2, 0, search_limit);
+			
+			// Insert the pair
+			main.insert(main.begin() + insert_idx, 
+						pend.begin() + pend_pos, 
+						pend.begin() + pend_pos + step / 2);
+			
+			inserted[pair_idx] = true;
+			total_inserted++;
 		}
-		prev_jacob_idx = curr_jacob_idx;
-		curr_jacob_idx = (jacobsthal(++j) - 2) * step / 2;
-		// std::cout << "curr "<< curr_jacob_idx << std::endl;
-		// std::cout << "prev "<< prev_jacob_idx << std::endl;
-	}
-	for(int left = pend.size(); left > prev_jacob_idx; left -= step / 2){
-			counter += step / 2;
-			size_t idx = 0;
-			if (left + step / 2 + counter >= main.size())
-				idx = binarySearch(main, pend[left + step / 2 - 1], step / 2, 0, main.size());
-			else
-				idx = binarySearch(main, pend[left + step / 2 - 1], step / 2, 0, left + step / 2 + counter);
-			main.insert(main.begin() + idx, pend.begin() + left, pend.begin() + left + step / 2);
+		
+		prev_jacob = curr_jacob;
+		j++;
 	}
 
 	// instead of looping over pend we must search for jacobsthal elements b3 pend[1] =, b5 pend[3], b11 pend[9]
