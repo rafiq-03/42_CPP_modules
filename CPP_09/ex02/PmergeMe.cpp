@@ -171,14 +171,14 @@ void	PmergeMe::mergeInsert(std::deque<int> &arr,size_t step){
 	// 	main.insert(main.begin() + idx, pend.begin() + i, pend.begin() + i + step / 2);
    	// }
 	int j = 3;
-	int curr_jacob_idx = jacobsthal(j) - 2;// index
+	int curr_jacob_idx = (jacobsthal(j) - 2) * step / 2;// index
 	int prev_jacob_idx = jacobsthal(j - 1) - 2;
 	// std::cout << "curr "<< curr_jacob_idx << std::endl;
 	// std::cout << "prev "<< prev_jacob_idx << std::endl;
-	while (curr_jacob_idx <= static_cast<int>(pend.size())){
-		for(int left = curr_jacob_idx; left > prev_jacob_idx; left--){
+	while (curr_jacob_idx < static_cast<int>(pend.size())){
+		for(int left = curr_jacob_idx; left > prev_jacob_idx; left -= step / 2){
 			// std::cout << "** back " << left << std::endl;
-			std::cout << "* " << pend[left + step / 2 - 1] << ", " << main[ left + step + counter - 1] << std::endl;
+			std::cout << "* " << pend[left + step / 2 - 1] << ", " << main[ left + step / 2 + counter + step / 2 - 1] << std::endl;
 			counter += step / 2;
 			size_t idx = 0;
 			if (left + step / 2 + counter >= main.size())
@@ -188,9 +188,18 @@ void	PmergeMe::mergeInsert(std::deque<int> &arr,size_t step){
 			main.insert(main.begin() + idx, pend.begin() + left, pend.begin() + left + step / 2);
 		}
 		prev_jacob_idx = curr_jacob_idx;
-		curr_jacob_idx = jacobsthal(++j) - 2;
+		curr_jacob_idx = (jacobsthal(++j) - 2) * step / 2;
 		// std::cout << "curr "<< curr_jacob_idx << std::endl;
 		// std::cout << "prev "<< prev_jacob_idx << std::endl;
+	}
+	for(int left = pend.size(); left > prev_jacob_idx; left -= step / 2){
+			counter += step / 2;
+			size_t idx = 0;
+			if (left + step / 2 + counter >= main.size())
+				idx = binarySearch(main, pend[left + step / 2 - 1], step / 2, 0, main.size());
+			else
+				idx = binarySearch(main, pend[left + step / 2 - 1], step / 2, 0, left + step / 2 + counter);
+			main.insert(main.begin() + idx, pend.begin() + left, pend.begin() + left + step / 2);
 	}
 
 	// instead of looping over pend we must search for jacobsthal elements b3 pend[1] =, b5 pend[3], b11 pend[9]
