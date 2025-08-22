@@ -37,5 +37,6 @@ class PmergeMe
 		void	isSorted(std::vector<int> &Chain);
 		void	mergeSort(std::vector<int> &arr);
 };
+bool isNumber(std::string s);
 
 #endif

@@ -20,6 +20,8 @@ PmergeMe::PmergeMe(int ac, char **av)
 		std::cout << "PmergeMe parametrized constructor called" << std::endl;
 	for (int i = 1; i < ac; i++)
 	{
+		if (!isNumber(av[i]))
+			continue;
 		int nb = atoi(av[i]);
 		if (find(dequeChain.begin(), dequeChain.end(), nb) == dequeChain.end()){
 			dequeChain.push_back(nb);
@@ -254,4 +256,13 @@ int		PmergeMe::jacobsthal(int n) {
     }
 
     return current;
+}
+
+bool isNumber(std::string s){
+	for (size_t i = 0; i < s.size(); i++)
+	{
+		if (!isdigit(s[i]))
+			return false;
+	}
+	return true;
 }
