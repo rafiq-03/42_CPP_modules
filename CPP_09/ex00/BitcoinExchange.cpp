@@ -2,13 +2,11 @@
 
 BitcoinExchange::BitcoinExchange(void)
 {
-	// std::cout << "BitcoinExchange Default constructor called" << std::endl;
-
 	std::ifstream csv("data.csv");
 	if (!csv.is_open())
 		throw std::runtime_error("Error: could not open file");
 	std::string line;
-	std::getline(csv, line);// skip first line;
+	std::getline(csv, line);
 	while (std::getline(csv, line)){
 		size_t pos = line.find(",");
 		if (pos == line.npos)
@@ -22,7 +20,7 @@ BitcoinExchange::BitcoinExchange(void)
 
 bool	isNumber(std::string &nbr){
 	for (size_t i = 0; i < nbr.size(); i++){
-		if (!isdigit(nbr[i]) && nbr[i] != ' ' && nbr[i] != '+' && nbr[i] != '-')
+		if (!isdigit(nbr[i]) && nbr[i] != ' ' && nbr[i] != '+' && nbr[i] != '-' && nbr[i] != '.')
 			return false;
 	}
 	return true;
@@ -31,7 +29,7 @@ bool	isNumber(std::string &nbr){
 void	BitcoinExchange::validateDate(std::string date){
 
 	size_t pos = date.find("-");
-	int value[3];//store date values
+	int value[3];
 	int i = 0;
 	std::string val;
 	while (pos != date.npos){
@@ -72,8 +70,8 @@ void BitcoinExchange::validate(std::string &line){
 		line.erase(0, pos + 1);
 		validateDate(key);
 		float value = validateValue(line);
-		// get thes key from map and make multiplication of value and 
-		std::cout << key << " => " << value  << " = " << value * _data[key] << std::endl;
+		float rate = (--_data.lower_bound(key))->second;
+		std::cout << key << "=> " << value  << " = " << value * rate << std::endl;
 	}
 	catch(const std::exception& e)
 	{
@@ -84,30 +82,20 @@ void BitcoinExchange::validate(std::string &line){
 void BitcoinExchange::exchange(std::string file){
 	std::ifstream input(file);
 	if (!input.is_open())
-		throw std::runtime_error("Error: could not open file");
+		throw std::runtime_error("Error: Could Not Open File");
 	std::string line;
-	std::getline(input, line);// skip first line;
+	std::getline(input, line);
 	while (std::getline(input, line))
 		validate(line);
 }
 
+BitcoinExchange::~BitcoinExchange(void){}
 
-BitcoinExchange::~BitcoinExchange(void)
-{
-	// std::cout << "BitcoinExchange Destructor called" << std::endl;
-}
-
-BitcoinExchange::BitcoinExchange(const BitcoinExchange& obj):_data(obj._data)
-{
-	std::cout << "BitcoinExchange Copy constructor called" << std::endl;
-}
+BitcoinExchange::BitcoinExchange(const BitcoinExchange& obj):_data(obj._data){}
 
 BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& obj)
 {
-	// std::cout << "BitcoinExchange Copy assignment operator called" << std::endl;
 	if (this != &obj)
-	{
 		_data = obj._data;
-	}
 	return (*this);
 }
