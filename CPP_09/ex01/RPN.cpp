@@ -27,25 +27,20 @@ float RPN::calculate(std::string input){
 		}
 		else if (*it != '*' && *it != '-' && *it != '+' && *it != '/')
 			throw std::runtime_error("Error");
-		if (_data.empty())
+		if (_data.size() < 2)
 			throw std::runtime_error("Error");
-		second = _data.top();
-		_data.pop();
-		if (_data.empty())
-			throw std::runtime_error("Error");
-		first = _data.top();
-		_data.pop();
+		second = _data.top(); _data.pop();
+		first = _data.top(); _data.pop();
 		switch (*it)
 		{
 			case '*':
 				_data.push(first * second);
 				break;
-			case '/':{
+			case '/':
 				if (second == 0)
-					throw std::runtime_error("Error: division by zero");
+					throw std::runtime_error("Error");
 				_data.push(first / second);
 				break;
-			}
 			case '+':
 				_data.push(first + second);
 				break;
@@ -58,6 +53,6 @@ float RPN::calculate(std::string input){
 		}
 	}
 	if (_data.size() != 1)
-    	throw std::runtime_error("Error: invalid RPN expression");
+    	throw std::runtime_error("Error");
 	return _data.top();
 }
