@@ -6,11 +6,11 @@
 #    By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/14 16:33:55 by rmarzouk          #+#    #+#              #
-#    Updated: 2025/06/16 17:55:39 by rmarzouk         ###   ########.fr        #
+#    Updated: 2025/08/22 19:53:07 by rmarzouk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FLAGS= -Wall -Wextra -Werror -std=c++98 #-fsanitize=address
+FLAGS= -Wall -Wextra -Werror -std=c++98
 CC = c++
 NAME= btc
 HEADER= BitcoinExchange.hpp

@@ -6,11 +6,11 @@
 #    By: rmarzouk <rmarzouk@student.1337.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/20 12:42:02 by rmarzouk          #+#    #+#              #
-#    Updated: 2025/08/21 18:28:22 by rmarzouk         ###   ########.fr        #
+#    Updated: 2025/08/22 20:57:44 by rmarzouk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FLAGS= -Wall -Wextra  -Werror -std=c++98 -fsanitize=address -g
+FLAGS= -Wall -Wextra  -Werror #-std=c++98 -fsanitize=address -g
 CC = c++
 NAME= PmergeMe
 HEADER= PmergeMe.hpp

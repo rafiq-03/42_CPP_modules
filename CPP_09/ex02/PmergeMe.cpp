@@ -9,15 +9,9 @@ struct ComparisonCounter {
     }
 };
 
-PmergeMe::PmergeMe(void)
-{
-	if (DEBUG)
-		std::cout << "PmergeMe Default constructor called" << std::endl;
-}
+PmergeMe::PmergeMe(void){}
 PmergeMe::PmergeMe(int ac, char **av)
 {
-	if (DEBUG)
-		std::cout << "PmergeMe parametrized constructor called" << std::endl;
 	for (int i = 1; i < ac; i++)
 	{
 		if (!isNumber(av[i]))
@@ -30,22 +24,12 @@ PmergeMe::PmergeMe(int ac, char **av)
 	}
 }
 
-PmergeMe::~PmergeMe(void)
-{
-	if (DEBUG)
-		std::cout << "PmergeMe Destructor called" << std::endl;
-}
+PmergeMe::~PmergeMe(void){}
 
-PmergeMe::PmergeMe(const PmergeMe& obj): dequeChain(obj.dequeChain), vectorChain(obj.vectorChain)
-{
-	if (DEBUG)
-		std::cout << "PmergeMe Copy constructor called" << std::endl;
-}
+PmergeMe::PmergeMe(const PmergeMe& obj): vectorChain(obj.vectorChain), dequeChain(obj.dequeChain){}
 
 PmergeMe& PmergeMe::operator=(const PmergeMe& obj)
 {
-	if (DEBUG)
-		std::cout << "PmergeMe Copy assignment operator called" << std::endl;
 	if (this != &obj){
 		dequeChain = obj.dequeChain;
 		vectorChain = obj.vectorChain;
@@ -53,20 +37,7 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& obj)
 	return (*this);
 }
 
-
 /* ---------------------------------------------------- */
-
-
-void	PmergeMe::isSorted(std::deque<int> &Chain){
-	for (size_t i = 1; i < Chain.size(); i++)
-	{
-		if (Chain[i] < Chain[i - 1])
-			std::cout << "\033[33m" << Chain[i - 1] << " \033[0m";
-		else
-			std::cout << Chain[i - 1]<< " " ;
-	}
-	std::cout << Chain[Chain.size() - 1] << std::endl;
-}
 
 void	PmergeMe::insert(std::deque<int> &main, std::deque<int> &pend, std::vector<int> &pairs){
 	if (!pend.empty()) {
@@ -146,15 +117,11 @@ void	PmergeMe::mergeSort(std::deque<int> &arr){
 }
 
 
-void	PmergeMe::isSorted(std::vector<int> &Chain){
-	for (size_t i = 1; i < Chain.size(); i++)
-	{
-		if (Chain[i] < Chain[i - 1])
-			std::cout << "\033[33m" << Chain[i - 1] << " \033[0m";
-		else
-			std::cout << Chain[i - 1]<< " " ;
-	}
-	std::cout << Chain[Chain.size() - 1] << std::endl;
+void	PmergeMe::Print(std::vector<int> &Chain, std::string state){
+	std::cout << state << ":\t";
+	for (size_t i = 0; i < Chain.size(); i++)
+		std::cout << Chain[i] << " ";
+	std::cout << std::endl;
 }
 
 void	PmergeMe::insert(std::vector<int> &main, std::vector<int> &pend, std::vector<int> &pairs){
@@ -235,10 +202,25 @@ void	PmergeMe::mergeSort(std::vector<int> &arr){
 }
 
 void	PmergeMe::fordJohnsonSort(){
-	mergeSort(dequeChain);
-	isSorted(dequeChain);
+
+	Print(vectorChain, "Before");
+	Print(vectorChain, "After");
+	clock_t t0 = std::clock();
 	mergeSort(vectorChain);
-	// isSorted(dequeChain);
+	clock_t t1 = std::clock();
+	mergeSort(dequeChain);
+	clock_t t2 = std::clock();
+	double first = double(t1 - t0) / CLOCKS_PER_SEC * 1e6;
+	double second = double(t2 - t1) / CLOCKS_PER_SEC * 1e6;
+	std::cout << "Time to process a range of 5 elements with std::vector : " << first << " µs" << std::endl;
+	std::cout << "Time to process a range of 5 elements with std::deque : " << second << " µs" << std::endl;
+
+	auto start = std::chrono::high_resolution_clock::now();
+	mergeSort(vectorChain);
+	auto end = std::chrono::high_resolution_clock::now();
+
+	auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
+	std::cout << "Time: " << duration << " µs\n";
 }
 
 int		PmergeMe::jacobsthal(int n) {
