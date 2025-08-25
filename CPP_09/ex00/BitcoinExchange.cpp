@@ -26,6 +26,15 @@ bool	isNumber(std::string &nbr){
 	return true;
 }
 
+std::string trim(const std::string& str) {
+    size_t start = str.find_first_not_of(" \t\n\r");
+    if (start == std::string::npos) {
+        return "";
+    }
+    size_t end = str.find_last_not_of(" \t\n\r");
+    return str.substr(start, end - start + 1);
+}
+
 void	BitcoinExchange::validateDate(std::string date){
 
 	size_t pos = date.find("-");
@@ -66,12 +75,19 @@ void BitcoinExchange::validate(std::string &line){
 
 		if (pos == line.npos)
 			throw std::runtime_error("Error: bad input => " + line);
-		std::string key(line.substr(0, pos));
+		std::string key(trim(line.substr(0, pos)));
 		line.erase(0, pos + 1);
 		validateDate(key);
 		float value = validateValue(line);
-		float rate = (--_data.lower_bound(key))->second;
-		std::cout << key << "=> " << value  << " = " << value * rate << std::endl;
+		float rate;
+		std::map<std::string, float>::iterator it = _data.find(key);
+		if (it == _data.end()){
+			it = _data.lower_bound(key);
+			if (it != _data.begin())
+				it--;
+		}
+		rate = it->second;
+		std::cout << key << " => " << value  << " = " << value * rate << std::endl;
 	}
 	catch(const std::exception& e)
 	{
